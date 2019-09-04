@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby '1.9.3'
+ruby '1.8.7'
 
 gem 'rake', '= 0.8.7'
 gem 'rails', '= 2.3.5'
@@ -15,6 +15,9 @@ gem 'i18n', '= 0.4.2'
 gem 'mysql'
 #gem 'sqlite3'
 gem 'rush', '= 0.6.8'
+
+#gem 'rmagick'
+gem 'mongrel'
 
 # Gems used only for assets and not required
 # in production environments by default.
