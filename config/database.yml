@@ -19,7 +19,7 @@ production:
       adapter: mysql
       database: fedena_ultimate
       port: 3306
-      username: root
-      password: foradian
+      username: neeraj
+      password: neeraj@2019
 cucumber:
   <<: *test
