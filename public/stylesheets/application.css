@@ -13,7 +13,7 @@ body {
     background : #b00 url(../../images/application/pattern_fedena_header.png) repeat;
 }
 #header {
-    width : 980px; 
+    width : 980px;
     height : 80px;
     margin:0 auto;
 }
@@ -1019,3 +1019,16 @@ height: 14px;
 textarea{
     font-family: Arial !important;
 }
+
+/* List */
+.list table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.list th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+.list tr:nth-child(even) {background-color: #f2f2f2;}

@@ -1,0 +1,39 @@
+<div id="content-header">
+ <%= image_tag("/images/student_details/student_details_logo.jpg") %>
+  <h1>Editing hostel</h1>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield" class="edit">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <% form_for(@hostel) do |f| %>
+    <%= f.error_messages %>
+
+    <p>
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :type %><br />
+      <%= f.radio_button :type, 'ladies' %>
+      <%= label :type, 'Ladies' %>
+      <%= f.radio_button :type, 'gents' %>
+      <%= label :type, 'Gents' %>
+    </p>
+    <p>
+      <%= f.label :other_information %><br />
+      <%= f.text_area :other_information %>
+    </p>
+    <p>
+      <%= f.submit 'Update' %>
+    </p>
+  <% end %>
+
+  <%= link_to 'Show', @hostel %> |
+  <%= link_to 'Back', hostels_path %>
+</div>
