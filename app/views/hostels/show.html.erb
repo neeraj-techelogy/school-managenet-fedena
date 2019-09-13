@@ -11,21 +11,24 @@
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
 
-  <p>
-    <b>Name:</b>
-    <%=h @hostel.name %>
-  </p>
+  <table width="700" class="list">
+    <tbody>
+      <tr class="odd left">
+        <td class="">Name</td>
+        <td class="right"><%=h @hostel.name %></td>
+      </tr>
 
-  <p>
-    <b>Type:</b>
-    <%=h @hostel.type %>
-  </p>
+      <tr class="even left">
+        <td>Type</td>
+        <td class="right"><%=h @hostel.type %></td>
+      </tr>
 
-  <p>
-    <b>Other information:</b>
-    <%=h @hostel.other_information %>
-  </p>
-
+      <tr class="odd left">
+        <td>Other information</td>
+        <td class="right"><%=h @hostel.other_information %></td>
+      </tr>
+    </tbody>
+  </table>
 
   <%= link_to 'Edit', edit_hostel_path(@hostel) %> |
   <%= link_to 'Back', hostels_path %>
