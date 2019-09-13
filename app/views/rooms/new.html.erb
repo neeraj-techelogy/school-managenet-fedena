@@ -7,33 +7,35 @@
 </div>
 <div id="page-yield" class="list">
 
+  <div id="necessary-field-notification"> Fields marked with <span class="necessary-field">*</span> must be filled.</div>
+
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
 
-  <% form_for(@room) do |f| %>
-    <%= f.error_messages %>
+  <div id="form-content">
+    <% form_for(@room) do |f| %>
+      <%= f.error_messages %>
 
-    <p>
-      <%= f.label :hostel %><br />
-      <%= f.collection_select :hostel_id, Hostel.all, :id, :name %>
-    </p>
-    <p>
-      <%= f.label :room_number %><br />
-      <%= f.text_field :room_number %>
-    </p>
-    <p>
-      <%= f.label :students_per_room %><br />
-      <%= f.text_field :students_per_room %>
-    </p>
-    <p>
-      <%= f.label :number_of_rooms %><br />
-      <%= f.text_field :number_of_rooms %>
-    </p>
-    <p>
-      <%= f.submit 'Create' %>
-    </p>
-  <% end %>
+      <div class="label-field-pair">
+        <label for="hostel">Hostel<span class="necessary-field">*</span></label>
+        <div class="text-input-bg"><%= f.collection_select :hostel_id, Hostel.all, :id, :name %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="room_number">Room number<span class="necessary-field">*</span></label>
+        <div class="text-input-bg"><%= f.text_field :room_number %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="students_per_room">Students per room<span class="necessary-field">*</span></label>
+        <div class="text-input-bg"><%= f.text_field :students_per_room %></div>
+      </div>
+      <div class="label-field-pair">
+        <%= f.label :number_of_rooms %>
+        <div class="text-input-bg"><%= f.text_field :number_of_rooms %></div>
+      </div>
+      <%= f.submit 'Create', :class => 'submit_button'  %>
+    <% end %>
+  </div>
 
   <%= link_to 'Back', rooms_path %>
 

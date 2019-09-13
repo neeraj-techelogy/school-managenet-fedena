@@ -14,21 +14,19 @@
   <% form_for(@room) do |f| %>
     <%= f.error_messages %>
 
-    <p>
-      <%= f.label :hostel %><br />
-      <%= f.collection_select :hostel_id, Hostel.all, :id, :name %>
-    </p>
-    <p>
-      <%= f.label :room_number %><br />
-      <%= f.text_field :room_number %>
-    </p>
-    <p>
-      <%= f.label :students_per_room %><br />
-      <%= f.text_field :students_per_room %>
-    </p>
-    <p>
-      <%= f.submit 'Update' %>
-    </p>
+    <div class="label-field-pair">
+      <label for="hostel">Hostel<span class="necessary-field">*</span></label>
+      <div class="text-input-bg"><%= f.collection_select :hostel_id, Hostel.all, :id, :name %></div>
+    </div>
+    <div class="label-field-pair">
+      <label for="room_number">Room number<span class="necessary-field">*</span></label>
+      <div class="text-input-bg"><%= f.text_field :room_number %></div>
+    </div>
+    <div class="label-field-pair">
+      <label for="students_per_room">Students per room<span class="necessary-field">*</span></label>
+      <div class="text-input-bg"><%= f.text_field :students_per_room %></div>
+    </div>
+    <%= f.submit 'Update', :class => 'submit_button' %>
   <% end %>
 
   <%= link_to 'Show', @room %> |

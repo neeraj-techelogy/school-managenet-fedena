@@ -6,6 +6,7 @@
   </div>
 </div>
 <div id="page-yield" class="list">
+  <div id="necessary-field-notification"> Fields marked with <span class="necessary-field">*</span> must be filled.</div>
 
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
@@ -14,24 +15,30 @@
   <% form_for(@hostel) do |f| %>
     <%= f.error_messages %>
 
-    <p>
-      <%= f.label :name %><br />
-      <%= f.text_field :name %>
-    </p>
-    <p>
-      <%= f.label :type %><br />
-      <%= f.radio_button :type, 'ladies', :checked => true %>
-      <%= label :type, 'Ladies' %>
-      <%= f.radio_button :type, 'gents' %>
-      <%= label :type, 'Gents' %><br />
-    </p>
-    <p>
-      <%= f.label :other_information %><br />
-      <%= f.text_area :other_information %>
-    </p>
-    <p>
-      <%= f.submit 'Create' %>
-    </p>
+    <div class="label-field-pair">
+      <label for="name">Name<span class="necessary-field">*</span></label>
+      <div class="text-input-bg"><%= f.text_field :name %></div>
+    </div>
+    <div class="label-field-pair">
+      <%= f.label :type %>
+      <div class="student_gender_value">
+        <%= f.radio_button :type, 'ladies', :checked => true %>
+        <label class="label_for_radio"> Ladies</label>
+        <%= f.radio_button :type, 'gents' %>
+        <label class="label_for_radio">Gents</label>
+      </div>
+    </div>
+    <div class="label-field-pair">
+      <%= f.label :other_information %>
+      <div class="text-input-bg">
+        <%= f.text_field :other_information %>
+      </div>
+    </div>
+
+    <div>
+      <%= f.submit 'Create', :class => 'submit_button' %>
+    </div>
+
   <% end %>
 
   <%= link_to 'Back', hostels_path %>
