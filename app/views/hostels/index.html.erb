@@ -12,25 +12,31 @@
   <% end %>
 
   <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
-    <tr class="tr-head">
-      <th>Sl no.</th>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Other information</th>
-      <th>Actions</th>
-    </tr>
-    <tr class="tr-blank"></tr>
+    <% if @hostels.any? %>
+      <tr class="tr-head">
+        <th>Sl no.</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Other information</th>
+        <th>Actions</th>
+      </tr>
+      <tr class="tr-blank"></tr>
 
-    <% @hostels.each_with_index do |hostel, i| %>
+      <% @hostels.each_with_index do |hostel, i| %>
+        <tr class="tr-<%= cycle('odd', 'even') %>">
+          <td class="col-1"><%= i+1 %></td>
+          <td class="col-1"><%=link_to hostel.name, hostel %></td>
+          <td class="col-1"><%=h hostel.type %></td>
+          <td class="col-2"><%=h hostel.other_information %></td>
+          <td class="col-2">
+            <%= link_to 'Edit', edit_hostel_path(hostel) %>
+            <%= link_to 'Destroy', hostel, :confirm => 'Are you sure?', :method => :delete %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
       <tr class="tr-<%= cycle('odd', 'even') %>">
-        <td class="col-1"><%= i+1 %></td>
-        <td class="col-1"><%=link_to hostel.name, hostel %></td>
-        <td class="col-1"><%=h hostel.type %></td>
-        <td class="col-2"><%=h hostel.other_information %></td>
-        <td class="col-2">
-          <%= link_to 'Edit', edit_hostel_path(hostel) %>
-          <%= link_to 'Destroy', hostel, :confirm => 'Are you sure?', :method => :delete %>
-        </td>
+        <td class="col-2">No hostels added</td>
       </tr>
     <% end %>
   </table>
