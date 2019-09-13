@@ -1,0 +1,33 @@
+<div id="content-header">
+ <%= image_tag("/images/student_details/student_details_logo.jpg") %>
+  <h1>Room detail</h1>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield" class="list">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <p>
+    <b>Hostel:</b>
+    <%=h @room.hostel.name %>
+  </p>
+
+  <p>
+    <b>Room number:</b>
+    <%=h @room.room_number %>
+  </p>
+
+  <p>
+    <b>Students per room:</b>
+    <%=h @room.students_per_room %>
+  </p>
+
+
+  <%= link_to 'Edit', edit_room_path(@room) %> |
+  <%= link_to 'Back', rooms_path %>
+
+</div>

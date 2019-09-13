@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  hostel: 
+  room_number: 1
+  students_per_room: 1
+
+two:
+  hostel: 
+  room_number: 1
+  students_per_room: 1

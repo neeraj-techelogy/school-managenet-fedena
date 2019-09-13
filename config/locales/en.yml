@@ -1268,6 +1268,7 @@ en: # locale
   to_dashboard: "to Fedena dashboard"
   admission_link_title: "Enter students admission details into the school records."
   hostel_link_title: "Manage hostels. Add rooms."
+  room_link_title: "View or manage rooms in hostels"
   student_link_title: "Search for existing and former students."
   user_link_title: "         Manage Users         "
   news_link_title: "View or publish latest school news and announcements"

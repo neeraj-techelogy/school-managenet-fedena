@@ -1,0 +1,40 @@
+<div id="content-header">
+ <%= image_tag("/images/student_details/student_details_logo.jpg") %>
+  <h1>New room</h1>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield" class="list">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <% form_for(@room) do |f| %>
+    <%= f.error_messages %>
+
+    <p>
+      <%= f.label :hostel %><br />
+      <%= f.collection_select :hostel_id, Hostel.all, :id, :name %>
+    </p>
+    <p>
+      <%= f.label :room_number %><br />
+      <%= f.text_field :room_number %>
+    </p>
+    <p>
+      <%= f.label :students_per_room %><br />
+      <%= f.text_field :students_per_room %>
+    </p>
+    <p>
+      <%= f.label :number_of_rooms %><br />
+      <%= f.text_field :number_of_rooms %>
+    </p>
+    <p>
+      <%= f.submit 'Create' %>
+    </p>
+  <% end %>
+
+  <%= link_to 'Back', rooms_path %>
+
+</div>

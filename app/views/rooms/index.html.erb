@@ -1,0 +1,45 @@
+<div id="content-header">
+ <%= image_tag("/images/student_details/student_details_logo.jpg") %>
+  <h1>Listing Rooms </h1>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield" class="list">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <%= link_to 'New room', new_room_path %>
+
+  <% @hostels.each do |hostel| %>
+    <h3>Hostel:  <%= hostel.name %></h3>
+
+    <% if hostel.rooms.any? %>
+      <table>
+        <tr>
+          <th>Room number</th>
+          <th>Students per room</th>
+        </tr>
+
+      <% hostel.rooms.order(:room_number).each do |room| %>
+        <tr>
+          <td><%=h room.room_number %></td>
+          <td><%=h room.students_per_room %></td>
+          <td><%= link_to 'Show', room %></td>
+          <td><%= link_to 'Edit', edit_room_path(room) %></td>
+          <td><%= link_to 'Destroy', room, :confirm => 'Are you sure?', :method => :delete %></td>
+        </tr>
+      <% end %>
+      </table>
+    <% else %>
+      <p>No rooms added in this hostel</p>
+    <% end %>
+    <hr />
+  <% end %>
+
+  <br />
+
+  <%= link_to 'New room', new_room_path %>
+</div>

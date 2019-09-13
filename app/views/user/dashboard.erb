@@ -80,6 +80,11 @@
         :class => "option_buttons", :id => "hostels_button", :title => "#{t('hostel_link_title')}"%>
     </div>
 
+    <div class="button-box">
+      <%= link_to "<div class ='button-label'><p>Room</p></div>", {:controller => "rooms", :action => "index"},
+        :class => "option_buttons", :id => "hostels_button", :title => "#{t('room_link_title')}"%>
+    </div>
+
   <% elsif @user.student? or @user.parent?%>
 
     <div class="button-box">
