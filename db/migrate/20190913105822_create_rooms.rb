@@ -4,7 +4,7 @@ class CreateRooms < ActiveRecord::Migration
       t.references :hostel
       t.integer :room_number
       t.integer :students_per_room
-
+      t.integer :rent
       t.timestamps
     end
   end
