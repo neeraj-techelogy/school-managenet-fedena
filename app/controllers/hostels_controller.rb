@@ -1,4 +1,8 @@
 class HostelsController < ApplicationController
+  def manage_hostels
+    
+  end
+
   # GET /hostels
   # GET /hostels.xml
   def index

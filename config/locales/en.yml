@@ -2484,3 +2484,6 @@ en: # locale
   descriptive_indicator_updated:  "Descriptive Indicator updated."
   select_batches: "Select batches"
   hostel: "Hostel"
+  hostels: "Hostels"
+  manage_hostels: "Manage Hostels"
+  manage_rooms: "Manage Rooms"
