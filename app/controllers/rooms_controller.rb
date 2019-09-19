@@ -122,8 +122,8 @@ class RoomsController < ApplicationController
     @student = Student.find(params[:student_id])
 
     if @student.rooms.count > 0
-      flash[:notice] = "A room already allocated to #{@student.full_name}"
-      render :js => "window.location = '/rooms/allocation'"
+      flash[:notice] = "A room is already allocated to #{@student.full_name}"
+      render :js => "window.location = '#{room_path(@student.rooms.first)}'"
     elsif @room.availability <= 0
       flash[:notice] = "Room not available"
       render :js => "window.location = '/rooms/allocation_student/#{@student.id}'"
@@ -133,5 +133,18 @@ class RoomsController < ApplicationController
       flash[:notice] = "Room allocated to #{@student.full_name}"
       render :js => "window.location = '/rooms/allocation'"
     end
+  end
+
+  def vacate
+    @room = Room.find(params[:room_id])
+    @student = Student.find(params[:student_id])
+    if @room.students.include?(@student)
+      @room.students.delete(@student)
+      flash[:notice] = "Room vacated"
+    else
+      flash[:notice] = "This room is not allocated to #{@student.full_name}"
+    end
+
+    render :js => "window.location = '/rooms/allocation'"
   end
 end

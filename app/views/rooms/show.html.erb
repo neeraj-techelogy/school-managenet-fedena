@@ -38,4 +38,49 @@
   <%= link_to 'Edit', edit_room_path(@room) %> |
   <%= link_to 'Back', rooms_path %>
 
+  <div class="box">
+    <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+      <% if @room.students.any? %>
+        <tr class="tr-head">
+          <td><%= t('sl_no') %></td>
+          <td><%= t('name') %></td>
+          <td><%= t('batch') %></td>
+          <td><%= t('adm_no') %></td>
+          <td><%= t('actions') %></td>
+
+        </tr>
+        <tr class="tr-blank"></tr>
+        <% @room.students.each_with_index do |student, i| %>
+          <tr class="tr-<%= cycle('odd', 'even') %>">
+            <td class="col-1"><%= i+1 %></td>
+            <td class="col-4"><%=  student.full_name %></td>
+            <td class="col-4"><%= student.batch.full_name %></td>
+            <td class="col-7"><%= student.admission_no %></td>
+            <td><div class="btn vacate-btn" id="vacate-btn" data-student="<%= student.id %>">Vacate</div></td>
+          </tr>
+        <% end %>
+      <% else %>
+
+        <tr class="tr-<%= cycle('odd', 'even') %>">
+          <td class="col-2">No students allocated</td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 </div>
+
+<script type="text/javascript">
+document.querySelectorAll('.vacate-btn').forEach(button => button.addEventListener('click', function(e){
+  student_id = e.target.dataset.student;
+  room_id = <%= @room.id %>
+
+  <%="#{
+    remote_function(
+      :url => {:action => "vacate"},
+      :with =>  "'room_id='+ room_id + '&student_id='+ student_id",
+      :before => "e.target.disabled = true",
+      :failure => "console.log('ff')"
+    )
+  }"%>
+}));
+</script>
