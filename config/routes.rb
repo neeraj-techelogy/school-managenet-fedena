@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :rooms
+  map.resources :rooms, :collection=>{:allocation=>[:get]}
 
   map.resources :hostels, :collection=>{:manage_hostels=>[:get]}
 

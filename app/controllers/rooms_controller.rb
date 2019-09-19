@@ -98,4 +98,8 @@ class RoomsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def allocation
+    
+  end
 end

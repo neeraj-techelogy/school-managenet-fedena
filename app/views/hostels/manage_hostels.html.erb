@@ -23,12 +23,17 @@
 
     <div class="link-box">
       <div class="link-heading"><%= link_to "#{t('manage_hostels')}" , {:controller => "hostels", :action => "index"} %> </div>
-      <div class="link-descr">Manage hostel details</div>
+      <div class="link-descr"><%= t('manage_hostel_description') %></div>
     </div>
 
     <div class="link-box">
       <div class="link-heading"><%= link_to "#{t('manage_rooms')}" , {:controller => "rooms", :action => "index"} %>  </div>
-      <div class="link-descr">Manage room details</div>
+      <div class="link-descr"><%= t('manage_room_description') %></div>
+    </div>
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "#{t('room_allocation')}" , {:controller => "rooms", :action => "allocation"} %>  </div>
+      <div class="link-descr"><%= t('room_allocation_description') %></div>
     </div>
 
     <div class="extender"></div>
