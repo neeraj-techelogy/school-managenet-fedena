@@ -1223,3 +1223,31 @@ input.radio {
 #ajax_result {padding:10px 0 10px 0;width:204px;float:left;}
 #ajax_result a{color:#000;font-weight:bold; text-decoration:none;}
 #ajax_result a:hover{color:#9E0F15; text-decoration:underline;}
+
+/* common */
+.align-right {
+  text-align: right !important;
+}
+.align-left {
+  text-align: left !important;
+}
+.align-center {
+  text-align: center !important;
+}
+.pointer {
+  cursor: pointer;
+}
+.btn {
+	margin-top: 5px;
+	padding: 7px 10px;
+	color: #fff;
+	background: #27292B;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	font-weight: bold;
+	font-size: 14px;
+	border: none;
+	font-family: arial;
+	cursor: pointer;
+  width: max-content;
+}

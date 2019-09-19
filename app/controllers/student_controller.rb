@@ -20,28 +20,28 @@ class StudentController < ApplicationController
   filter_access_to :all
   before_filter :login_required
   before_filter :protect_other_student_data, :except =>[:show]
-    
+
   before_filter :find_student, :only => [
     :academic_report, :academic_report_all, :admission3, :change_to_former,
     :delete, :edit, :add_guardian, :email, :remove, :reports, :profile,
     :guardians, :academic_pdf,:show_previous_details,:fees,:fee_details
   ]
 
-  
+
   def academic_report_all
     @user = current_user
     @prev_student = @student.previous_student
     @next_student = @student.next_student
     @course = @student.course
     @examtypes = ExaminationType.find( ( @course.examinations.collect { |x| x.examination_type_id } ).uniq )
-    
+
     @graph = open_flash_chart_object(965, 350, "/student/graph_for_academic_report?course=#{@course.id}&student=#{@student.id}")
     @graph2 = open_flash_chart_object(965, 350, "/student/graph_for_annual_academic_report?course=#{@course.id}&student=#{@student.id}")
   end
 
   def admission1
     @student = Student.new(params[:student])
-    @selected_value = Configuration.default_country 
+    @selected_value = Configuration.default_country
     @application_sms_enabled = SmsSetting.find_by_settings_key("ApplicationEnabled")
     @last_admitted_student = Student.find(:last)
     @config = Configuration.find_by_config_key('AdmissionNumberAutoIncrement')
@@ -200,12 +200,12 @@ class StudentController < ApplicationController
     @student = Student.find(params[:id])
     @additional_fields = StudentAdditionalField.find(:all, :conditions=> "status = true")
     @additional_details = StudentAdditionalDetail.find_all_by_student_id(@student)
-    
+
     if @additional_details.empty?
       redirect_to :controller => "student",:action => "admission4" , :id => @student.id
     end
     if request.post?
-   
+
       params[:student_additional_details].each_pair do |k, v|
         row_id=StudentAdditionalDetail.find_by_student_id_and_additional_field_id(@student.id,k)
         unless row_id.nil?
@@ -274,7 +274,7 @@ class StudentController < ApplicationController
   def generate_all_tc_pdf
     @ids = params[:stud]
     @students = @ids.map { |st_id| ArchivedStudent.find(st_id) }
-    
+
     render :pdf=>'generate_all_tc_pdf'
   end
 
@@ -438,7 +438,12 @@ class StudentController < ApplicationController
           :conditions => ["admission_no = ? " , params[:query]],
           :order => "batch_id asc,first_name asc",:include =>  [{:batch=>:course}]) unless params[:query] == ''
       end
-      render :layout => false
+
+      if params[:view].present? && params[:view] == 'room_allocation'
+        render :partial => "search_ajax_room_allocation"
+      else
+        render :layout => false
+      end
     else
       if params[:query].length>= 3
         @archived_students = ArchivedStudent.find(:all,
@@ -454,6 +459,22 @@ class StudentController < ApplicationController
       end
       render :partial => "search_ajax"
     end
+  end
+
+  def search_ajax_room_allocation
+    if params[:query].length>= 3
+      @students = Student.find(:all,
+        :conditions => ["first_name LIKE ? OR middle_name LIKE ? OR last_name LIKE ?
+                          OR admission_no = ? OR (concat(first_name, \" \", last_name) LIKE ? ) ",
+          "#{params[:query]}%","#{params[:query]}%","#{params[:query]}%",
+          "#{params[:query]}", "#{params[:query]}" ],
+        :order => "batch_id asc,first_name asc",:include =>  [{:batch=>:course}]) unless params[:query] == ''
+    else
+      @students = Student.find(:all,
+        :conditions => ["admission_no = ? " , params[:query]],
+        :order => "batch_id asc,first_name asc",:include =>  [{:batch=>:course}]) unless params[:query] == ''
+    end
+    render :layout => false
   end
 
   def student_annual_overview
@@ -491,7 +512,7 @@ class StudentController < ApplicationController
     @immediate_contact = Guardian.find(@student.immediate_contact_id) \
       unless @student.immediate_contact_id.nil? or @student.immediate_contact_id == ''
   end
-  
+
   def profile_pdf
     @current_user = current_user
     @student = Student.find(params[:id])
@@ -502,7 +523,7 @@ class StudentController < ApplicationController
     @previous_data = StudentPreviousData.find_by_student_id(@student.id)
     @immediate_contact = Guardian.find(@student.immediate_contact_id) \
       unless @student.immediate_contact_id.nil? or @student.immediate_contact_id == ''
-        
+
     render :pdf=>'profile_pdf'
   end
 
@@ -510,7 +531,7 @@ class StudentController < ApplicationController
     @previous_data = StudentPreviousData.find_by_student_id(@student.id)
     @previous_subjects = StudentPreviousSubjectMark.find_all_by_student_id(@student.id)
   end
-  
+
   def show
     @student = Student.find_by_admission_no(params[:id])
     send_data(@student.photo_data,
@@ -582,7 +603,7 @@ class StudentController < ApplicationController
 
   def category_edit
     @student_category = StudentCategory.find(params[:id])
-    
+
   end
 
   def category_update
@@ -668,7 +689,7 @@ class StudentController < ApplicationController
     end
   end
 
-   
+
 
   #  def adv_search
   #    @batches = []
@@ -855,7 +876,7 @@ class StudentController < ApplicationController
       end
     end
     render :pdf=>'generate_tc_pdf'
-         
+
   end
 
   #  def new_adv
@@ -955,7 +976,7 @@ class StudentController < ApplicationController
   end
 
 
-  
+
   #  # Graphs
   #
   #  def graph_for_previous_years_marks_overview

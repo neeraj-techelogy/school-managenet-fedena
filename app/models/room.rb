@@ -1,6 +1,9 @@
 class Room < ActiveRecord::Base
   attr_accessor :number_of_rooms
+
   belongs_to :hostel
+  has_and_belongs_to_many :students
+
   validates_presence_of :hostel_id, :room_number, :students_per_room, :rent
   validates_numericality_of :room_number, :only_integer => true, :greater_than => 0
   validates_numericality_of :students_per_room, :only_integer => true, :less_than_or_equal_to => 20, :greater_than => 0
@@ -16,5 +19,9 @@ class Room < ActiveRecord::Base
 
   def rent_in_bucks=(bucks)
     self.rent = bucks.to_d*100 if bucks.present?
+  end
+
+  def availability
+    self.students_per_room - self.students.count
   end
 end

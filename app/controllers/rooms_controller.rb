@@ -100,6 +100,38 @@ class RoomsController < ApplicationController
   end
 
   def allocation
-    
+  end
+
+  def allocation_student
+    @student = Student.find(params[:id])
+    @hostels = Hostel.all
+  end
+
+  def show_rooms_list
+    unless params[:id].nil?
+      @hostel = Hostel.find(params[:id])
+      @student = Student.find(params[:student_id])
+      render :update do |page|
+        page.replace_html 'rooms', :partial => 'rooms_list'
+      end
+    end
+  end
+
+  def allocate
+    @room = Room.find(params[:room_id])
+    @student = Student.find(params[:student_id])
+
+    if @student.rooms.count > 0
+      flash[:notice] = "A room already allocated to #{@student.full_name}"
+      render :js => "window.location = '/rooms/allocation'"
+    elsif @room.availability <= 0
+      flash[:notice] = "Room not available"
+      render :js => "window.location = '/rooms/allocation_student/#{@student.id}'"
+    else
+      @room.students << @student
+      @room.save
+      flash[:notice] = "Room allocated to #{@student.full_name}"
+      render :js => "window.location = '/rooms/allocation'"
+    end
   end
 end

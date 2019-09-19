@@ -1,0 +1,52 @@
+
+
+<h3><%= @hostel.name %></h3>
+
+<table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+  <% if @hostel.rooms.any? %>
+    <tr class="tr-head">
+      <th>Room number</th>
+      <th>Students per room</th>
+      <th>Availability</th>
+      <th>Rent</th>
+      <th>Actions</th>
+    </tr>
+
+    <% @hostel.rooms.order(:room_number).each_with_index do |room, i| %>
+      <tr class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-1"><%=link_to room.room_number, room %></td>
+        <td class="col-1"><%=h room.students_per_room %></td>
+        <td class="col-1"><%= room.availability %></td>
+        <td class="col-2 align-right"><%=h room.rent_in_bucks %></td>
+        <td class="col-4 align-center">
+          <% if room.availability <= 0 %>
+            No availability
+          <% else %>
+            <div class="btn allocate-btn" id="allocate-btn" data-room="<%= room.id %>">Allocate</div>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr class="tr-<%= cycle('odd', 'even') %>">
+      <td class="col-2">No rooms added in this hostel</td>
+    </tr>
+  <% end %>
+</table>
+<script type="text/javascript">
+  document.querySelectorAll('.allocate-btn').forEach(button => button.addEventListener('click', function(e){
+    room_id = e.target.dataset.room;
+    student_id = <%= @student.id %>
+    console.log(room_id)
+    console.log(student_id)
+
+    <%="#{
+      remote_function(
+        :url => {:action => "allocate"},
+        :with =>  "'room_id='+ room_id + '&student_id='+ student_id",
+        :before => "e.target.disabled = true",
+        :failure => "console.log('ff')"
+      )
+    }"%>
+  }));
+</script>
