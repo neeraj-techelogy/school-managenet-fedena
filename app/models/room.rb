@@ -14,7 +14,7 @@ class Room < ActiveRecord::Base
   default_scope :order=>'room_number ASC'
 
   def rent_in_bucks
-    rent.to_f/100 if rent # convert to pennies
+    '%.2f' % (rent.to_f/100) if rent # convert to pennies
   end
 
   def rent_in_bucks=(bucks)

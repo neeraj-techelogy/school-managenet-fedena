@@ -51,7 +51,7 @@ class RoomsController < ApplicationController
           i = @room.room_number + 1
 
           while i < @room.room_number + number_of_rooms
-            room = Room.new(:hostel_id => @room.hostel.id, :students_per_room => @room.students_per_room, :room_number => i)
+            room = Room.new(:hostel_id => @room.hostel.id, :students_per_room => @room.students_per_room, :room_number => i, :rent_in_bucks => @room.rent_in_bucks)
             room.save
           	i = i + 1
           end
