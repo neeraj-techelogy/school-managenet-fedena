@@ -2491,3 +2491,5 @@ en: # locale
   manage_room_description: "Manage room details"
   room_allocation: "Room allocation"
   room_allocation_description: "Manage room allocation to students"
+  fee_collection: "Fee collection"
+  fee_collection_description: "Create hostel fee collection date"

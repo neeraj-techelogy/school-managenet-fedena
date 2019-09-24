@@ -1,6 +1,6 @@
 class HostelsController < ApplicationController
   def manage_hostels
-    
+
   end
 
   # GET /hostels
@@ -85,5 +85,9 @@ class HostelsController < ApplicationController
       format.html { redirect_to(hostels_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def fee_collection
+
   end
 end

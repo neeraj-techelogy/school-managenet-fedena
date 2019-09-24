@@ -28,7 +28,7 @@
             </td>
             <td> <%= t('batch') %></td>
             <td> <%= t('adm_no') %></td>
-
+            <td>Actions</td>
           </tr>
           <tr class="tr-blank"></tr>
           <% @students.each_with_index do |student, i| %>
@@ -37,6 +37,7 @@
               <td class="col-4"><%=  link_to student.full_name, :controller => 'student', :action => 'profile', :id => student.id%></td>
               <td class="col-4"><%= student.batch.full_name %></td>
               <td class="col-1"><%= student.admission_no %></td>
+              <td class="col-1"><%= link_to 'Create invoice', new_invoice_path(:student_id => student.id) %></td>
             </tr>
           <% end %>
         <% else %>

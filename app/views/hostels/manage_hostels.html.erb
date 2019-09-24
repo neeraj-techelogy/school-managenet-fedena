@@ -1,7 +1,7 @@
 <div id="content-header">
   <%= image_tag("/images/show_settings.png") %>
-  <h1>Room allocation</h1>
-  <h3>Search student, select hostel and allocate room</h3>
+  <h1>Manage hostels, rooms and fees</h1>
+  <h3>Manage hostels, room allocation and fees collection</h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -34,6 +34,16 @@
     <div class="link-box">
       <div class="link-heading"><%= link_to "#{t('room_allocation')}" , {:controller => "rooms", :action => "allocation"} %>  </div>
       <div class="link-descr"><%= t('room_allocation_description') %></div>
+    </div>
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "#{t('fee_collection')}" , {:controller => "hostels", :action => "fee_collection"} %>  </div>
+      <div class="link-descr"><%= t('fee_collection_description') %></div>
+    </div>
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "Pay hostel fees" , {:controller => "invoices", :action => "show"} %>  </div>
+      <div class="link-descr">Pay student hostel fees</div>
     </div>
 
     <div class="extender"></div>

@@ -1251,3 +1251,20 @@ input.radio {
 	cursor: pointer;
   width: max-content;
 }
+.text-warning {
+  color: orangered;
+}
+.text-danger {
+  color: red;
+}
+.text-success {
+  color: green;
+}
+.h-spacer-10 {
+  height: 10px;
+  clear:both;
+}
+.h-spacer-20 {
+  height: 20px;
+  clear:both;
+}

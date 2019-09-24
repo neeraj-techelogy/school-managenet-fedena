@@ -3,6 +3,7 @@ class Room < ActiveRecord::Base
 
   belongs_to :hostel
   has_and_belongs_to_many :students
+  has_many :invoices, :as => :payable
 
   validates_presence_of :hostel_id, :room_number, :students_per_room, :rent
   validates_numericality_of :room_number, :only_integer => true, :greater_than => 0
@@ -14,11 +15,11 @@ class Room < ActiveRecord::Base
   default_scope :order=>'room_number ASC'
 
   def rent_in_bucks
-    '%.2f' % (rent.to_f/100) if rent # convert to pennies
+    '%.2f' % (rent.to_f/100) if rent
   end
 
   def rent_in_bucks=(bucks)
-    self.rent = bucks.to_d*100 if bucks.present?
+    self.rent = bucks.to_d*100 if bucks.present? # convert to pennies
   end
 
   def availability
