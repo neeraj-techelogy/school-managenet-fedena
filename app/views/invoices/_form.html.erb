@@ -29,17 +29,19 @@
     </div>
   </div>
 
-  <% if student %>
-    <%= hidden_field_tag :student_id, student.id  %>
-  <% else %>
-    <div class="label-field-pair">
-      <label><%= t('course_and_batch') %><span class="necessary-field">*</span></label>
-      <div class="text-input-bg"><%= select_tag "batch", options_from_collection_for_select(Batch.all, 'id', 'full_name', '1') %></div>
-    </div>
+  <% if select_payer %>
+    <% if student %>
+      <%= hidden_field_tag :student_id, student.id  %>
+    <% else %>
+      <div class="label-field-pair">
+        <label><%= t('course_and_batch') %><span class="necessary-field">*</span></label>
+        <div class="text-input-bg"><%= select_tag "batch", options_from_collection_for_select(Batch.all, 'id', 'full_name', '1') %></div>
+      </div>
+    <% end %>
   <% end %>
 
   <div>
-    <%= f.submit 'Create', :class => 'submit_button' %>
+    <%= f.submit form_action_text(@invoice), :class => 'submit_button' %>
   </div>
 
 <% end %>

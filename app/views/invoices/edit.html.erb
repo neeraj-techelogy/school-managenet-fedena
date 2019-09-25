@@ -12,7 +12,7 @@
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
 
-  <%= render :partial => "form", :locals => { :invoice => @invoice, :student => nil } %>
+  <%= render :partial => "form", :locals => { :invoice => @invoice, :student => nil, :select_payer => false } %>
 
   <% if @student %>
     <div class="h-spacer-20"></div>
