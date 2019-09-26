@@ -68,4 +68,8 @@ class FinanceTransactionCategory < ActiveRecord::Base
     end
   end
 
+  def fee
+    find_by_name('Fee')
+  end
+
 end

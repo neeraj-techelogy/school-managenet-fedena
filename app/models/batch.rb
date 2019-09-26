@@ -43,6 +43,7 @@ class Batch < ActiveRecord::Base
   has_many :timetable_entries
   has_many :cce_reports
   has_many :assessment_scores
+  has_many :finance_fee_categories
 
 
   has_and_belongs_to_many :graduated_students, :class_name => 'Student', :join_table => 'batch_students'
@@ -72,7 +73,7 @@ class Batch < ActiveRecord::Base
   def course_section_name
     "#{course_name} - #{section_name}"
   end
-  
+
   def inactivate
     update_attribute(:is_deleted, true)
     self.employees_subjects.destroy_all
@@ -124,7 +125,7 @@ class Batch < ActiveRecord::Base
     end
     return event_holidays #array of holiday event dates
   end
-  
+
   def return_holidays(start_date,end_date)
     @common_holidays ||= Event.holidays.is_common
     @batch_holidays=self.events(:all,:conditions=>{:is_holiday=>true})
@@ -552,7 +553,7 @@ class Batch < ActiveRecord::Base
     end
   end
 
-  
+
 
   def subject_hours(starting_date,ending_date,subject_id)
     unless subject_id == 0
@@ -607,7 +608,7 @@ class Batch < ActiveRecord::Base
   def fa_groups
     FaGroup.all(:joins=>:subjects, :conditions=>{:subjects=>{:batch_id=>id}}).uniq
   end
-  
+
   def create_scholastic_reports
     report_hash={}
     fa_groups.each do |fg|
@@ -651,7 +652,7 @@ class Batch < ActiveRecord::Base
 
   def perform
     #this is for cce_report_generation use flags if need job for other works
-    
+
     if job_type=="1"
       generate_batch_reports
     elsif job_type=="2"
@@ -680,6 +681,6 @@ class Batch < ActiveRecord::Base
   def user_is_authorized?(u)
     employees.collect(&:user_id).include? u.id
   end
-  
-  
+
+
 end
