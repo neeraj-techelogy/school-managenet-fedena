@@ -35,7 +35,7 @@ class StudentCategory < ActiveRecord::Base
 
   def check_dependence
     if Student.find_all_by_student_category_id(self.id).blank?
-       errors.add_to_base( "#{t('category_is_in_use')}")
+       errors.add_to_base( "#{I18n.t('category_is_in_use')}")
        return false
     end
 

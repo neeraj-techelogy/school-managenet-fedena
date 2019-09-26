@@ -70,11 +70,11 @@ class MonthlyPayslip < ActiveRecord::Base
 
   def status_as_text
     if is_approved ==true
-      status = "#{t('approved')}"
+      status = "#{I18n.t('approved')}"
     elsif is_rejected ==true
-      status = "#{t('rejected')}"
+      status = "#{I18n.t('rejected')}"
     else
-      status = "#{t('pending')}"
+      status = "#{I18n.t('pending')}"
     end
     return status
   end

@@ -25,7 +25,7 @@ class Guardian < ActiveRecord::Base
   before_destroy :immediate_contact_nil
 
   def validate
-    errors.add(:dob, "#{t('cant_be_a_future_date')}.") if self.dob > Date.today unless self.dob.nil?
+    errors.add(:dob, "#{I18n.t('cant_be_a_future_date')}.") if self.dob > Date.today unless self.dob.nil?
   end
 
   def is_immediate_contact?

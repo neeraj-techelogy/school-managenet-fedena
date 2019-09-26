@@ -33,9 +33,9 @@ class FinanceFeeCollection < ActiveRecord::Base
 
   def validate
     unless self.start_date.nil? or self.end_date.nil?
-      errors.add_to_base("#{t('start_date_cant_be_after_end_date')}") if self.start_date > self.end_date
-      errors.add_to_base("#{t('start_date_cant_be_after_due_date')}") if self.start_date > self.due_date
-      errors.add_to_base("#{t('end_date_cant_be_after_due_date')}") if self.end_date > self.due_date
+      errors.add_to_base("#{I18n.t('start_date_cant_be_after_end_date')}") if self.start_date > self.end_date
+      errors.add_to_base("#{I18n.t('start_date_cant_be_after_due_date')}") if self.start_date > self.due_date
+      errors.add_to_base("#{I18n.t('end_date_cant_be_after_due_date')}") if self.end_date > self.due_date
     else
     end
   end
@@ -50,7 +50,7 @@ class FinanceFeeCollection < ActiveRecord::Base
 
   def check_transaction(transactions)
     transactions.finance_fees_id.nil? ? false : true
-   
+
   end
 
   def fee_table
@@ -84,7 +84,7 @@ class FinanceFeeCollection < ActiveRecord::Base
   end
 
   def create_associates
-    
+
     batch_discounts = BatchFeeDiscount.find_all_by_finance_fee_category_id(self.fee_category_id)
     batch_discounts.each do |discount|
       discount_attributes = discount.attributes
@@ -127,7 +127,7 @@ class FinanceFeeCollection < ActiveRecord::Base
     trans = self.finance_transactions.all(:conditions=>"transaction_date >= '#{start_date}' AND transaction_date <= '#{end_date}'")
     total = trans.map{|t|t.amount}.sum
   end
-  
+
   def student_fee_balance(student)
     particulars= self.fees_particulars(student)
     financefee = self.fee_transactions(student.id)

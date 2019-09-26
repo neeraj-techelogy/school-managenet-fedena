@@ -41,12 +41,12 @@ class Exam < ActiveRecord::Base
   end
   
   def validate
-    errors.add_to_base("#{t('minmarks_cant_be_more_than_maxmarks')}") \
+    errors.add_to_base("#{I18n.t('minmarks_cant_be_more_than_maxmarks')}") \
       if minimum_marks and maximum_marks and minimum_marks > maximum_marks
-    errors.add_to_base("#{t('minmarks_cant_be_more_than_maxmarks')}") \
+    errors.add_to_base("#{I18n.t('minmarks_cant_be_more_than_maxmarks')}") \
       if minimum_marks and maximum_marks and minimum_marks > maximum_marks
     unless self.start_time.nil? or self.end_time.nil?
-      errors.add_to_base("#{t('end_time_cannot_before_start_time')}")if self.end_time < self.start_time
+      errors.add_to_base("#{I18n.t('end_time_cannot_before_start_time')}")if self.end_time < self.start_time
     end
   end
 
@@ -89,8 +89,8 @@ class Exam < ActiveRecord::Base
   def create_exam_event
     if self.event.blank?
       new_event = Event.create do |e|
-        e.title       = "#{t('exam_text')}"
-        e.description = "#{self.exam_group.name} #{t('for')} #{self.subject.batch.full_name} - #{self.subject.name}"
+        e.title       = "#{I18n.t('exam_text')}"
+        e.description = "#{self.exam_group.name} #{I18n.t('for')} #{self.subject.batch.full_name} - #{self.subject.name}"
         e.start_date  = self.start_time
         e.end_date    = self.end_time
         e.is_exam     = true

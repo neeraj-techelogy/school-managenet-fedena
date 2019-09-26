@@ -23,9 +23,9 @@ class User < ActiveRecord::Base
   validates_length_of     :username, :within => 1..20
   validates_length_of     :password, :within => 4..40, :allow_nil => true
   validates_format_of     :username, :with => /^[A-Z0-9_-]*$/i,
-    :message => "#{t('must_contain_only_letters')}"
+    :message => "#{I18n.t('must_contain_only_letters')}"
   validates_format_of     :email, :with => /^[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i,   :allow_blank=>true,
-    :message => "#{t('must_be_a_valid_email_address')}"
+    :message => "#{I18n.t('must_be_a_valid_email_address')}"
   validates_presence_of   :role , :on=>:create
   validates_presence_of   :password, :on => :create
 
@@ -76,10 +76,10 @@ class User < ActiveRecord::Base
   end
 
   def role_name
-    return "#{t('admin')}" if self.admin?
-    return "#{t('student_text')}" if self.student?
-    return "#{t('employee_text')}" if self.employee?
-    return "#{t('parent')}" if self.parent?
+    return "#{I18n.t('admin')}" if self.admin?
+    return "#{I18n.t('student_text')}" if self.student?
+    return "#{I18n.t('employee_text')}" if self.employee?
+    return "#{I18n.t('parent')}" if self.parent?
     return nil
   end
 
