@@ -22,20 +22,18 @@
   <div class="box">
 
     <div class="link-box">
-      <div class="link-heading"><%= link_to "Batch-wise Fee Collections" , {:controller => "invoices", :action => "new"} %> </div>
-      <div class="link-descr">Create Fee Collection invoices</div>
+      <div class="link-heading"><%= link_to "Batch-wise Fee Collections" , {:controller => "finance_fee_collections", :action => "new"} %> </div>
+      <div class="link-descr">Create batch wise Hostel Fee collections</div>
     </div>
 
     <div class="link-box">
       <div class="link-heading"><%= link_to "User-wise Fee Collections" , {:controller => "student", :action => "index"} %> </div>
-      <div class="link-descr">Create User-wise Fee Collections</div>
-    </div>
-
-    <div class="link-box">
-      <div class="link-heading"><%= link_to "View" , {:controller => "invoices", :action => "index"} %>  </div>
-      <div class="link-descr">Displays fee collection dates</div>
+      <div class="link-descr">Create User-wise Hostel Fee Collections</div>
     </div>
 
     <div class="extender"></div>
+    <h3>Hostel fee collections</h3>
+    <%= render :partial => "list", :locals => { :finance_fee_collections => @finance_fee_collections } %>
+
   </div>
 </div>

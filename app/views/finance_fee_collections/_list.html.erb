@@ -1,0 +1,33 @@
+<table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+  <% if finance_fee_collections.any? %>
+    <tr class="tr-head">
+      <th>Name</th>
+      <th>Category</th>
+      <th>Batch</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Due date</th>
+      <th>Actions</th>
+    </tr>
+    <tr class="tr-blank"></tr>
+
+    <% finance_fee_collections.each_with_index do |finance_fee_collection, i| %>
+      <tr class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-1"><%= link_to finance_fee_collection.name, finance_fee_collection %></td>
+        <td class="col-1"><%= finance_fee_collection.fee_category.name %></td>
+        <td class="col-1"><%= finance_fee_collection.batch.full_name if finance_fee_collection.batch %></td>
+        <td class="col-2"><%= finance_fee_collection.start_date %></td>
+        <td class="col-2 <%= 'text-warning' if finance_fee_collection.end_date.past? %>"><%= finance_fee_collection.end_date %></td>
+        <td class="col-2 <%= 'text-warning' if finance_fee_collection.due_date.past? %>"><%= finance_fee_collection.due_date %></td>
+        <td class="col-2">
+          <%= link_to 'Edit', edit_finance_fee_collection_path(finance_fee_collection) %>
+          <%= link_to 'Destroy', finance_fee_collection, :confirm => 'Are you sure?', :method => :delete %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr class="tr-<%= cycle('odd', 'even') %>">
+      <td class="col-2">No no hostel fees created</td>
+    </tr>
+  <% end %>
+</table>

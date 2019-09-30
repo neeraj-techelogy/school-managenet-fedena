@@ -21,12 +21,14 @@ class FinanceFeeCategory < ActiveRecord::Base
   belongs_to :student
 #
   has_many   :fee_particulars, :class_name => "FinanceFeeParticular"
-  has_many   :fee_collections, :class_name => "FinanceFeeCollection"
+  has_many   :fee_collections, :class_name => "FinanceFeeCollection", :foreign_key => "fee_category_id"
   has_many   :fee_discounts
 
   cattr_reader :per_page
 
   @@per_page = 10
+
+  named_scope :hostel_fees, { :conditions => { :is_deleted => false, :name => 'Hostel fees' }}
 
   validates_presence_of :name
   validates_presence_of :batch_id,:message=>"#{I18n.t('not_specified')}"

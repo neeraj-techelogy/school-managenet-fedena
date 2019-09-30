@@ -37,7 +37,7 @@
               <td class="col-4"><%=  link_to student.full_name, :controller => 'student', :action => 'profile', :id => student.id%></td>
               <td class="col-4"><%= student.batch.full_name %></td>
               <td class="col-1"><%= student.admission_no %></td>
-              <td class="col-1"><%= link_to 'Create invoice', new_invoice_path(:student_id => student.id) %></td>
+              <td class="col-1"><%= link_to 'Create hostel fee', new_finance_fee_collection_path(:student_id => student.id) if student.rooms.any? %></td>
             </tr>
           <% end %>
         <% else %>

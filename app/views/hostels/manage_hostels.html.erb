@@ -37,12 +37,12 @@
     </div>
 
     <div class="link-box">
-      <div class="link-heading"><%= link_to "#{t('fee_collection')}" , {:controller => "hostels", :action => "fee_collection"} %>  </div>
+      <div class="link-heading"><%= link_to "#{t('fee_collection')}" , {:controller => "finance_fee_collections", :action => "index"} %>  </div>
       <div class="link-descr"><%= t('fee_collection_description') %></div>
     </div>
 
     <div class="link-box">
-      <div class="link-heading"><%= link_to "Pay hostel fees" , {:controller => "invoices", :action => "show"} %>  </div>
+      <div class="link-heading"><%= link_to "Pay hostel fees" , {:controller => "finance", :action => "fees_submission_index"} %>  </div>
       <div class="link-descr">Pay student hostel fees</div>
     </div>
 

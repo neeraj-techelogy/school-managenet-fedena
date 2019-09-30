@@ -17,6 +17,7 @@
 #limitations under the License.
 
 class FinanceFeeCollection < ActiveRecord::Base
+  GRADINGTYPES = {"1"=>"GPA","2"=>"CWA","3"=>"CCE"}
   belongs_to :batch
   has_many :finance_fees, :foreign_key =>"fee_collection_id",:dependent=>:destroy
   has_many :finance_transactions, :through => :finance_fees
@@ -26,6 +27,7 @@ class FinanceFeeCollection < ActiveRecord::Base
   belongs_to :fee_category,:class_name => "FinanceFeeCategory"
   has_one :event, :as => :origin
 
+  named_scope :hostel_fees, {:select => "batches.*",:joins => :course,:conditions=>["courses.grading_type = #{GRADINGTYPES.invert["CCE"]}"],:order=>:code}
 
   validates_presence_of :name,:start_date,:fee_category_id,:end_date,:due_date
 
@@ -161,4 +163,13 @@ class FinanceFeeCollection < ActiveRecord::Base
     return total_fees
   end
 
+  def self.hostel_fee_collections
+    finance_fee_collections = []
+    FinanceFeeCategory.hostel_fees.each do |category|
+      category.fee_collections.each do |fee_collection|
+        finance_fee_collections << fee_collection
+      end
+    end
+    finance_fee_collections.sort_by {|k|  k['due_date']}.reverse
+  end
 end

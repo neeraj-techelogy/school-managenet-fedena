@@ -44,7 +44,7 @@ class Batch < ActiveRecord::Base
   has_many :cce_reports
   has_many :assessment_scores
   has_many :finance_fee_categories
-
+  has_one :hostel_fees_category, :conditions => { :is_deleted => false, :name => 'Hostel fees' } , :class_name => 'FinanceFeeCategory'
 
   has_and_belongs_to_many :graduated_students, :class_name => 'Student', :join_table => 'batch_students'
 
@@ -72,6 +72,16 @@ class Batch < ActiveRecord::Base
 
   def course_section_name
     "#{course_name} - #{section_name}"
+  end
+
+  def find_or_create_hostel_fees_category
+    if self.hostel_fees_category
+      return self.hostel_fees_category
+    else
+      fees_category = FinanceFeeCategory.new( :name => 'Hostel fees', :batch => self, :is_master => true )
+      fees_category.save
+      return fees_category
+    end
   end
 
   def inactivate

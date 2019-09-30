@@ -86,8 +86,4 @@ class HostelsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-
-  def fee_collection
-
-  end
 end

@@ -1,0 +1,49 @@
+<div id="content-header">
+<%= image_tag("/images/show_finance.png") %>
+  <h1><%= t('fees_text') %></h1>
+  <h3><%= t('collection_details') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield" class="detail">
+  <table width="700" class="list">
+    <tbody>
+      <tr class="odd left">
+        <td class="">Name</td>
+        <td class="right"><%=h @finance_fee_collection.name %></td>
+      </tr>
+
+      <tr class="even left">
+        <td><%= t('fee_category_name') %></td>
+        <td class="right"><%=h @finance_fee_collection.fee_category.name %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td><%= t('batch') %></td>
+        <td class="right"><%=h @finance_fee_collection.batch.full_name if @finance_fee_collection.batch %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td><%= t('start_date') %></td>
+        <td class="right"><%=h @finance_fee_collection.start_date %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td class=""><%= t('end_date') %></td>
+        <td class="right <%= 'text-warning' if @finance_fee_collection.end_date.past? %>"><%=h @finance_fee_collection.end_date %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td class=""><%= t('due_date') %></td>
+        <td class="right <%= 'text-warning' if @finance_fee_collection.due_date.past? %>"><%=h @finance_fee_collection.due_date %></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <%= link_to 'Edit', edit_finance_fee_collection_path(@finance_fee_collection) %> |
+  <%= link_to 'Back', finance_fee_collections_path %>
+
+</div>

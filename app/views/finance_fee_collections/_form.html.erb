@@ -1,0 +1,52 @@
+<% form_for(finance_fee_collection) do |f| %>
+  <%= f.error_messages %>
+
+  <div class="label-field-pair">
+    <label for="title">Name<span class="necessary-field">*</span></label>
+    <div class="text-input-bg"><%= f.text_field :name %></div>
+  </div>
+
+  <div class="label-field-pair">
+    <label for="start_date"><%= t('start_date') %><span class="necessary-field">*</span></label>
+    <div class="text-input-bg">
+      <%= calendar_date_select_tag 'finance_fee_collection[start_date]',
+        I18n.l(Date.today,:format=>:default),
+        :year_range => 0.years.ago..5.years.from_now, :popup=>"force" %>
+    </div>
+  </div>
+
+  <div class="label-field-pair">
+    <label for="end_date"><%= t('end_date') %><span class="necessary-field">*</span></label>
+    <div class="text-input-bg">
+      <%= calendar_date_select_tag 'finance_fee_collection[end_date]',
+        I18n.l(Date.today,:format=>:default),
+        :year_range => 0.years.ago..5.years.from_now, :popup=>"force" %>
+    </div>
+  </div>
+
+  <div class="label-field-pair">
+    <label for="dob"><%= t('due_date') %><span class="necessary-field">*</span></label>
+    <div class="text-input-bg">
+      <%= calendar_date_select_tag 'finance_fee_collection[due_date]',
+        I18n.l(Date.today,:format=>:default),
+        :year_range => 0.years.ago..5.years.from_now, :popup=>"force" %>
+    </div>
+  </div>
+
+  <% if select_payer %>
+    <% if student %>
+      <%= hidden_field_tag :student_id, student.id  %>
+      <%= hidden_field_tag "finance_fee_collection[batch_id]", student.batch.id  %>
+    <% else %>
+      <div class="label-field-pair">
+        <label><%= t('course_and_batch') %><span class="necessary-field">*</span></label>
+        <div class="text-input-bg"><%= select_tag "finance_fee_collection[batch_id]", options_from_collection_for_select(Batch.all, 'id', 'full_name', '1') %></div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div>
+    <%= f.submit form_action_text(finance_fee_collection), :class => 'submit_button' %>
+  </div>
+
+<% end %>

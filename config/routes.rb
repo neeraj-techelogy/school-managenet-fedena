@@ -1,8 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :finance_fee_collections
   map.resources :invoices
   map.resources :rooms, :collection=>{:allocation=>[:get]}
 
-  map.resources :hostels, :collection=>{:manage_hostels=>[:get], :fee_collection=>[:get]}
+  map.resources :hostels, :collection=>{:manage_hostels=>[:get]}
 
   map.resources :grading_levels
   map.resources :ranking_levels, :collection => {:create_ranking_level=>[:get,:post], :edit_ranking_level=>[:get,:post], :update_ranking_level=>[:get,:post], :delete_ranking_level=>[:get,:post], :ranking_level_cancel=>[:get,:post], :change_priority=>[:get,:post]}
