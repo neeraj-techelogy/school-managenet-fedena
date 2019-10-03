@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :documents
   map.resources :finance_fee_collections
-  map.resources :invoices
   map.resources :rooms, :collection=>{:allocation=>[:get]}
 
   map.resources :hostels, :collection=>{:manage_hostels=>[:get]}

@@ -1,0 +1,22 @@
+<% form_for(document, :html=> {:multipart=>true}) do |f| %>
+  <%= f.error_messages %>
+
+  <%= hidden_field_tag :student_id, student.id if student %>
+
+  <div class="label-field-pair">
+    <label for="name">Name<span class="necessary-field">*</span></label>
+    <div class="text-input-bg"><%= f.text_field :name %></div>
+  </div>
+
+  <div class="label-field-pair">
+    <label for="name">Attachment<span class="necessary-field">*</span></label>
+    <div class="text-input-bg">
+      <%= f.file_field :attachment, :class => "input-file" %>
+    </div>
+  </div>
+
+  <div>
+    <%= f.submit form_action_text(document), :class => 'submit_button' %>
+  </div>
+
+<% end %>

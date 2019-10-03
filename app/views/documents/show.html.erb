@@ -1,0 +1,36 @@
+<div id="content-header">
+ <%= image_tag("/images/student_details/student_details_logo.jpg") %>
+  <h1>Document detail</h1>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield" class="detail">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <table width="700" class="list">
+    <tbody>
+      <tr class="odd left">
+        <td class="">Name</td>
+        <td class="right"><%=h @document.name %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td class="">Owner</td>
+        <td class="right"><%= @document.attachable.full_name %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td>Attachment</td>
+        <td class="right"><%=link_to @document.name, @document.attachment.url, :target => :_blank %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= link_to 'Edit', edit_document_path(@document, :student_id => @document.attachable_id) %> |
+  <%= link_to 'Back', documents_path(:student_id => @document.attachable_id) %>
+
+</div>

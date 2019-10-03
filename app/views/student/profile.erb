@@ -37,6 +37,7 @@
       <li><%= link_to "#{t('guardians_text')}", :controller => "student",
           :action => "guardians", :id => @student.id %></li>
     <% end %>
+    <li><%= link_to "Documents", documents_path({ :student_id => @student.id }) %></li>
     <% if permitted_to? :email,:student %>
       <% @config = Configuration.find_by_config_key('NetworkState').config_value %>
       <% if @config == 'Online'  %>

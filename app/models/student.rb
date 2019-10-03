@@ -44,8 +44,8 @@ class Student < ActiveRecord::Base
   has_many   :assessment_scores
   has_many   :exam_scores
   has_many   :previous_exam_scores
-  has_many   :invoices, :as => :payer
   has_and_belongs_to_many :rooms
+  has_many    :documents, :as => :attachable
 
 
   named_scope :active, :conditions => { :is_active => true }

@@ -1,6 +1,6 @@
 <div id="content-header">
  <%= image_tag("/images/student_details/student_details_logo.jpg") %>
-  <h1>New hostel fees</h1>
+  <h1>New document</h1>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -12,11 +12,7 @@
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
 
-  <%= render :partial => "form", :locals => { :invoice => @invoice, :student => @student, :select_payer => true } %>
+  <%= render :partial => "form", :locals => { :document => @document, :student => @student } %>
 
-  <% if @student %>
-    <div class="h-spacer-20"></div>
-    <h3>Invoices for <%= @student.full_name %></h3>
-    <%= render :partial => "list", :locals => { :invoices => @invoices } %>
-  <% end %>
+  <%= link_to 'Back', documents_path(:student_id => @student.id) %>
 </div>

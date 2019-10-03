@@ -1,0 +1,52 @@
+<div id="content-header">
+ <%= image_tag("/images/student_details/student_details_logo.jpg") %>
+  <h1>Listing Documents </h1>
+  <% if @student %>
+    <h3><%= @student.full_name %></h3>
+  <% end %>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield" class="list">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+    <% if @documents.any? %>
+      <tr class="tr-head">
+        <th>Sl no.</th>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+      <tr class="tr-blank"></tr>
+
+      <% @documents.each_with_index do |document, i| %>
+        <tr class="tr-<%= cycle('odd', 'even') %>">
+          <td class="col-1"><%= i+1 %></td>
+          <td class="col-4"><%=link_to document.name, document %></td>
+          <td class="col-1">
+            <%= link_to 'View', document.attachment.url, :target => :_blank %>
+            <%= link_to 'Edit', edit_document_path(document) %>
+            <%= link_to 'Destroy', document, :confirm => 'Are you sure?', :method => :delete %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-2">No documents added</td>
+      </tr>
+    <% end %>
+  </table>
+
+  <br />
+
+  <% if @student %>
+    <%= link_to 'New document', new_document_path(:student_id => @student.id), :class => 'action_button' %>
+  <% else %>
+    <%= link_to 'Select student', '/student' %>
+  <% end %>
+
+</div>

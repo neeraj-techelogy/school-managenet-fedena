@@ -1268,3 +1268,6 @@ input.radio {
   height: 20px;
   clear:both;
 }
+.input-file {
+  height: 28px !important;
+}
