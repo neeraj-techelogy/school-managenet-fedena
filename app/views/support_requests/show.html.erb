@@ -44,18 +44,23 @@
       </tr>
     </tbody>
   </table>
-  <div class="detail-action-cont align-right">
-    <% if @support_request.previous_status %>
-      <%= link_to "Mark #{@support_request.previous_status.humanize}", update_status_support_request_path(:progress => 'back') , :method => :post, :class => 'btn-primary' %>
-    <% end %>
+  <% if can? :update_status, @support_request %>
+    <div class="detail-action-cont align-right">
+      <% if @support_request.previous_status %>
+        <%= link_to "Mark #{@support_request.previous_status.humanize}", update_status_support_request_path(:progress => 'back') , :method => :post, :class => 'btn-primary' %>
+      <% end %>
 
-    <% if @support_request.next_status %>
-      <%= link_to "► Mark #{@support_request.next_status.humanize}", update_status_support_request_path(:progress => 'next') , :method => :post, :class => 'btn-primary' %>
-    <% end %>
-  </div>
+      <% if @support_request.next_status %>
+        <% unless (@support_request.next_status === @support_request.last_status) && (cannot? :accept, @support_request)  %>
+          <%= link_to "► Mark #{@support_request.next_status.humanize}", update_status_support_request_path(:progress => 'next') , :method => :post, :class => 'btn-primary' %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
 
-
-  <%= link_to 'Edit', edit_support_request_path(@support_request) %> |
+  <% if can? :edit, @support_request %>
+    <%= link_to 'Edit', edit_support_request_path(@support_request) %> |
+  <% end %>
   <%= link_to 'Back', support_requests_path %>
 
 </div>

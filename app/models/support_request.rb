@@ -33,4 +33,8 @@ class SupportRequest < ActiveRecord::Base
   def previous_status
     (self.status_index <= 0) ? nil : STATUS_OPTIONS[self.status_index - 1]
   end
+
+  def last_status
+    STATUS_OPTIONS[-1]
+  end
 end
