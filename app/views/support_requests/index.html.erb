@@ -1,0 +1,56 @@
+<div id="content-header">
+ <%= image_tag("/images/student_details/student_details_logo.jpg") %>
+  <h1>Listing Support requests</h1>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield" class="list">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+    <% if @support_requests.any? %>
+      <tr class="tr-head">
+        <th>Created at</th>
+        <th>Title</th>
+        <th>Reporter</th>
+        <th>Assignee</th>
+        <th>Waiting for</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+      <tr class="tr-blank"></tr>
+
+      <% @support_requests.each do |support_request| %>
+        <tr class="tr-<%= cycle('odd', 'even') %>">
+          <td class="col-1"><%= support_request.created_at.to_date %></td>
+          <td class="col-1"><%=link_to support_request.title, support_request %></td>
+          <td class="col-1"><%=h support_request.reporter.full_name %></td>
+          <td class="col-2"><%=h support_request.assignee.full_name %></td>
+          <td class="col-2"><%=h support_request.waiting_for.full_name %></td>
+          <td class="col-2"><%=h support_request.status %></td>
+          <td class="col-2">
+            <% if can? :edit, support_request %>
+              <%= link_to 'Edit', edit_support_request_path(support_request) %>
+            <% end %>
+            <% if can? :destroy, support_request %>
+              <%= link_to 'Destroy', support_request, :confirm => 'Are you sure?', :method => :delete %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-2">No records to show</td>
+      </tr>
+    <% end %>
+  </table>
+
+  <br />
+  <% if can? :create, SupportRequest %>
+    <%= link_to 'New support request', new_support_request_path, :class => 'action_button' %>
+  <% end %>
+</div>

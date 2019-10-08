@@ -1,0 +1,51 @@
+<div id="content-header">
+ <%= image_tag("/images/student_details/student_details_logo.jpg") %>
+  <h1>Support request detail</h1>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield" class="detail">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <table width="700" class="list">
+    <tbody>
+      <tr class="odd left">
+        <td class="">Title</td>
+        <td class="right"><%=h @support_request.title %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td class="">Reporter</td>
+        <td class="right"><%= @support_request.reporter.full_name %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td>Assignee</td>
+        <td class="right"><%= @support_request.assignee.full_name %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td>Waiting for</td>
+        <td class="right"><%= @support_request.waiting_for.full_name %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td>Status</td>
+        <td class="right"><%= @support_request.status %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td>Description</td>
+        <td class="right"><%= @support_request.description %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= link_to 'Edit', edit_support_request_path(@support_request) %> |
+  <%= link_to 'Back', support_requests_path %>
+
+</div>

@@ -34,6 +34,8 @@ class User < ActiveRecord::Base
   has_many  :events,:through=>:user_events
   has_one :student_record,:class_name=>"Student",:foreign_key=>"user_id"
   has_one :employee_record,:class_name=>"Employee",:foreign_key=>"user_id"
+  has_many :support_requests, :foreign_key => "reporter_id"
+  has_many :assigned_support_requests, :class_name => "SupportRequest", :foreign_key => "assignee_id"
 
   def before_save
     self.salt = random_string(8) if self.salt == nil

@@ -55,3 +55,4 @@ gem 'thor', '= 0.14.6'
 gem 'minitest'
 #gem 'test-unit', '= 1.2.3'
 #gem 'railroady', '= 0.11.0', :group => :development
+gem "cancan"

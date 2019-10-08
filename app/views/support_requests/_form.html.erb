@@ -1,0 +1,30 @@
+
+<div id="necessary-field-notification"> Fields marked with <span class="necessary-field">*</span> must be filled.</div>
+
+<% form_for(support_request) do |f| %>
+  <%= f.error_messages %>
+
+  <div class="label-field-pair">
+    <label for="name">Title<span class="necessary-field">*</span></label>
+    <div class="text-input-bg"><%= f.text_field :title %></div>
+  </div>
+
+  <div class="label-field-pair">
+    <%= f.label :assignee %>
+    <div class="text-input-bg">
+        <%= f.collection_select :assignee_id, User.order(:name), :id, :full_name, :include_blank => true %>
+    </div>
+  </div>
+
+  <div class="label-field-pair-text-area">
+    <%= f.label :description %>
+    <div class="textarea-text-input-bg">
+      <%= f.text_area :description,:cols => 27, :rows => 3 %>
+    </div>
+  </div>
+
+  <div>
+    <%= f.submit form_action_text(support_request), :class => 'submit_button' %>
+  </div>
+
+<% end %>

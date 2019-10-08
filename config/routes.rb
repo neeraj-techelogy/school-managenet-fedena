@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :support_requests
   map.resources :documents
   map.resources :finance_fee_collections
   map.resources :rooms, :collection=>{:allocation=>[:get]}
