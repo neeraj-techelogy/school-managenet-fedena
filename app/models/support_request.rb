@@ -7,6 +7,9 @@ class SupportRequest < ActiveRecord::Base
 
   validates_presence_of :title, :assignee, :reporter, :status
 
+  STATUS_OPTIONS = ['open', 'in_progress', 'waiting_response', 'completed', 'accepted']
+  validates_inclusion_of :status, {:in => STATUS_OPTIONS}
+
   def waiting_for
     self.last_replied_by === self.assignee ? self.reporter : self.assignee
   end
@@ -17,5 +20,17 @@ class SupportRequest < ActiveRecord::Base
     else
       self.reporter
     end
+  end
+
+  def status_index
+    STATUS_OPTIONS.find_index(self.status)
+  end
+
+  def next_status
+    (self.status_index >= (STATUS_OPTIONS.length - 1)) ? nil : STATUS_OPTIONS[self.status_index + 1]
+  end
+
+  def previous_status
+    (self.status_index <= 0) ? nil : STATUS_OPTIONS[self.status_index - 1]
   end
 end

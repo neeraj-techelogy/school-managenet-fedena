@@ -44,6 +44,16 @@
       </tr>
     </tbody>
   </table>
+  <div class="detail-action-cont align-right">
+    <% if @support_request.previous_status %>
+      <%= link_to "Mark #{@support_request.previous_status.humanize}", update_status_support_request_path(:progress => 'back') , :method => :post, :class => 'btn-primary' %>
+    <% end %>
+
+    <% if @support_request.next_status %>
+      <%= link_to "► Mark #{@support_request.next_status.humanize}", update_status_support_request_path(:progress => 'next') , :method => :post, :class => 'btn-primary' %>
+    <% end %>
+  </div>
+
 
   <%= link_to 'Edit', edit_support_request_path(@support_request) %> |
   <%= link_to 'Back', support_requests_path %>

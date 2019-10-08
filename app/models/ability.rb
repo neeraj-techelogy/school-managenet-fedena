@@ -23,6 +23,8 @@ class Ability
       end
 
       if user.student? || user.employee?
+        can :read, SupportRequest
+        can :update_status, SupportRequest, :assignee_id => user.id
         can :manage, SupportRequest, :reporter_id => user.id
         can :manage, SupportRequestReply, :user_id => user.id
       end

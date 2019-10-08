@@ -1177,6 +1177,10 @@ input.radio {
     border-bottom:1px solid #bdcfff;
     padding:10px 10px 10px 10px;
 }
+.detail-action-cont {
+  width: 700px;
+  margin: 5px;
+}
 /* Manage action */
 .link-box {
     margin:10px 40px;
@@ -1271,6 +1275,24 @@ input.radio {
 .input-file {
   height: 28px !important;
 }
+.width-50 {
+  width: 50%;
+}
+.btn-primary {
+	margin-top: 15px;
+	margin-left: 15px;
+	padding: 7px 10px;
+	color: #fff;
+	background: #27292B;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	font-weight: bold;
+	font-size: 14px;
+	border: none;
+	font-family: arial;
+	cursor: pointer;
+}
+
 /* Textarea*/
 .label-field-pair-text-area{
     height:110px;

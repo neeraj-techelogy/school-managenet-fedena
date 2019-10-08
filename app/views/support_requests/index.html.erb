@@ -48,7 +48,7 @@
       </tr>
     <% end %>
   </table>
-
+  <%= will_paginate @support_requests %>
   <br />
   <% if can? :create, SupportRequest %>
     <%= link_to 'New support request', new_support_request_path, :class => 'action_button' %>
