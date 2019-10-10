@@ -1,7 +1,7 @@
 class SupportRequest < ActiveRecord::Base
   belongs_to :reporter, :class_name => 'User', :foreign_key => 'reporter_id'
   belongs_to :assignee, :class_name => 'User', :foreign_key => 'assignee_id'
-  has_many :support_request_replies
+  has_many :support_request_replies, :dependent => :destroy
 
   named_scope :not_accepted, { :conditions=> ['status != "accepted"  OR status IS NULL'] }
 

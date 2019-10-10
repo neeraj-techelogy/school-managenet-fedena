@@ -2,17 +2,15 @@ class SupportRequestsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @support_requests = SupportRequest.paginate(:page => params[:page])
-
-    respond_to do |format|
-      format.html
+    if current_user.admin?
+      @support_requests = SupportRequest.not_accepted.paginate(:page => params[:page])
+    else
+      @support_requests = (current_user.assigned_support_requests.not_accepted +  current_user.support_requests.not_accepted).uniq.paginate(:page => params[:page])
     end
   end
 
   def show
-    respond_to do |format|
-      format.html
-    end
+    @support_request_reply = SupportRequestReply.new(:support_request => @support_request)
   end
 
   def new
@@ -54,10 +52,7 @@ class SupportRequestsController < ApplicationController
 
   def destroy
     @support_request.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(support_requests_url) }
-    end
+    redirect_to(support_requests_url)
   end
 
   def update_status

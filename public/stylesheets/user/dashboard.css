@@ -59,6 +59,9 @@
 #hostels_button {background:#fff url(../../images/dashboard_buttons/button_Human.png) 0 0 no-repeat;}
 #hostels_button:hover {background:#fff url(../../images/dashboard_buttons/button_Human.png) -175px 0 no-repeat;}
 
+#support_requests_button {background:#fff url(../../images/dashboard_buttons/button_Human.png) 0 0 no-repeat;}
+#support_requests_button:hover {background:#fff url(../../images/dashboard_buttons/button_Human.png) -175px 0 no-repeat;}
+
 #finance_button {background:#fff url(../../images/dashboard_buttons/button_finance.png) 0 0 no-repeat;}
 #finance_button:hover {background:#fff url(../../images/dashboard_buttons/button_finance.png) -175px 0 no-repeat;}
 

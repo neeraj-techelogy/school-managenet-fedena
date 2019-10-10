@@ -1,0 +1,17 @@
+<div id="content-header">
+ <%= image_tag("/images/student_details/student_details_logo.jpg") %>
+  <h1>New support request reply</h1>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield" class="list">
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <%= render :partial => "form", :locals => { :support_request_reply => @support_request_reply } %>
+
+  <%= link_to 'Back', @support_request_reply.support_request %>
+</div>

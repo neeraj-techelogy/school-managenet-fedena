@@ -257,6 +257,11 @@
 
   <% end %>
 
+  <div class="button-box">
+    <%= link_to "<div class ='button-label'><p>Support requests</p></div>", {:controller => "support_requests", :action => "index"},
+      :class => "option_buttons", :id => "support_requests_button", :title => "Manage support requests and replies"%>
+  </div>
+
   <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
     <% unless mod[:dashboard_menu].blank? %>
       <% if permitted_to? "#{mod[:dashboard_menu][:action]}".to_sym,"#{mod[:dashboard_menu][:controller]}".to_sym %>

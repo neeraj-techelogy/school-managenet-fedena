@@ -31,7 +31,7 @@
           <td class="col-1"><%=h support_request.reporter.full_name %></td>
           <td class="col-2"><%=h support_request.assignee.full_name %></td>
           <td class="col-2"><%=h support_request.waiting_for.full_name %></td>
-          <td class="col-2"><%=h support_request.status %></td>
+          <td class="col-2"><%=h support_request.status.humanize %></td>
           <td class="col-2">
             <% if can? :edit, support_request %>
               <%= link_to 'Edit', edit_support_request_path(support_request) %>

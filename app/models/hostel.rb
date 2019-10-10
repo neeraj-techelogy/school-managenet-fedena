@@ -1,7 +1,7 @@
 class Hostel < ActiveRecord::Base
   self.inheritance_column = nil
 
-  has_many :rooms
+  has_many :rooms, :dependent => :destroy
 
   validates_presence_of :name, :type
   validates_uniqueness_of :name

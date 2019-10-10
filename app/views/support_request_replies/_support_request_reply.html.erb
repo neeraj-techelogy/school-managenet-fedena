@@ -1,0 +1,25 @@
+<div class="comment">
+  <div class="comment-details">
+    <div class="commenter">
+      <%= support_request_reply.user.present? ? support_request_reply.user.full_name : "#{t('user_deleted')}" %>
+    </div>
+
+    <div class="comment-posted-at">
+      <%= t('posted') %> <%= time_ago_in_words(support_request_reply.created_at) %> <%= t('ago') %>
+    </div>
+
+    <div class="approve">
+      <div class="delete-comment">
+        <% if can? :edit, support_request_reply %>
+          <%= link_to 'Edit', edit_support_request_support_request_reply_path(support_request_reply.support_request, support_request_reply) %>
+        <% end %>
+        <% if can? :destroy, support_request_reply %>
+          <%= link_to 'Destroy', support_request_support_request_reply_path(support_request_reply.support_request, support_request_reply), :confirm => 'Are you sure?', :method => :delete %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="comment-content">
+    <%= simple_format support_request_reply.comment %>
+  </div>
+</div>

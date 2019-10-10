@@ -27,6 +27,8 @@ class Ability
         can :update_status, SupportRequest, :assignee_id => user.id
         can :accept, SupportRequest, :reporter_id => user.id
         can :manage, SupportRequest, :reporter_id => user.id
+
+        can :read, SupportRequestReply
         can :manage, SupportRequestReply, :user_id => user.id
       end
     else

@@ -3,7 +3,6 @@ class Room < ActiveRecord::Base
 
   belongs_to :hostel
   has_and_belongs_to_many :students
-  has_many :invoices, :as => :payable
 
   validates_presence_of :hostel_id, :room_number, :students_per_room, :rent
   validates_numericality_of :room_number, :only_integer => true, :greater_than => 0

@@ -1,0 +1,11 @@
+<div class="comment-content">
+  <% form_for([support_request_reply.support_request, support_request_reply]) do |f| %>
+    <%= f.error_messages %>
+    <%= f.text_area :comment %>
+
+    <div class="align-right">
+      <%= f.submit form_action_text(support_request_reply), :class => 'btn-primary' %>
+    </div>
+
+  <% end %>
+</div>

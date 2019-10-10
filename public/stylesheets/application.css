@@ -1324,3 +1324,48 @@ input.radio {
     margin:5px 0 0 10px;
     padding:5px;
 }
+/* Comment */
+.comment-list {
+  padding: 0 0 20px 0;
+}
+.comment {
+  border-bottom: 1px solid #aaa;
+  margin: 20px 0 0 0;
+  padding: 10px 0 10px 0;
+}
+.comment-details {
+    color: #888;
+    font-size: 80%;
+    height: 15px;
+    margin: 0 0 10px 0;
+}
+.comment-details .commenter {
+    float: left;
+    width: 200px;
+}
+.comment-details .comment-posted-at {
+    float: right;
+   padding-left: 10px;
+}
+.comment-details .delete-comment {
+    float: right;
+    margin: 0 0 0 4px;
+}
+.comment-content {
+
+    width: 600px;
+}
+
+.comment-content textarea  {
+    -moz-border-radius:10px 10px 10px 10px;
+    -webkit-border-radius:10px;
+    border:1px solid #C6C6C6;
+    background-color:#EEEEEE;
+    width: 600px;
+    height: 100px;
+}
+
+.comment-content textarea:focus{
+    background: #fff;
+    border: 1px solid #9e0f15;
+}
