@@ -1,0 +1,20 @@
+<div id="page-yield" class="detail">
+
+  <table width="700" class="list">
+    <tbody>
+      <tr class="odd left">
+        <td class="">Name</td>
+        <td class="right"><%=h @store.name %></td>
+      </tr>
+
+      <tr class="even left">
+        <td>Description</td>
+        <td class="right"><%=h @store.description %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= link_to 'Edit', edit_store_path(@store) if can? :edit, @store %>
+  <%= link_to 'Back', stores_path %>
+
+</div>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  supplier_type: 
+  name: MyString
+  contact_number: MyString
+  address: MyText
+  tin_number: MyString
+  help_desk: MyString
+
+two:
+  supplier_type: 
+  name: MyString
+  contact_number: MyString
+  address: MyText
+  tin_number: MyString
+  help_desk: MyString

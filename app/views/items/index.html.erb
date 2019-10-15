@@ -1,0 +1,39 @@
+<table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+  <% if @items.any? %>
+    <tr class="tr-head">
+      <th>Category</th>
+      <th>Name</th>
+      <th>Code</th>
+      <th>Specification</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+    <tr class="tr-blank"></tr>
+
+    <% @items.each_with_index do |item, i| %>
+      <tr class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-2"><%=h item.item_category.name %></td>
+        <td class="col-2"><%=link_to item.name, item %></td>
+        <td class="col-2"><%=h item.code %></td>
+        <td class="col-2"><%=h item.specification %></td>
+        <td class="col-2"><%=h item.description %></td>
+        <td class="col-3">
+          <% if can? :edit, item %>
+            <%= link_to 'Edit', edit_item_path(item) %>
+          <% end %>
+          <% if can? :destroy, item %>
+            <%= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr class="tr-<%= cycle('odd', 'even') %>">
+      <td class="col-2">No Items added</td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Item', new_item_path if can? :create, Item %>

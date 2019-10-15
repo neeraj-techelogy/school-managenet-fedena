@@ -1,0 +1,39 @@
+<% form_for(supplier) do |f| %>
+  <div id="necessary-field-notification"> Fields marked with <span class="necessary-field">*</span> must be filled.</div>
+  <%= f.error_messages %>
+
+  <div class="label-field-pair">
+    <label for="supplier_type_id">Supplier type<span class="necessary-field">*</span></label>
+    <div class="text-input-bg"><%= f.collection_select :supplier_type_id, SupplierType.all, :id, :name %></div>
+  </div>
+
+  <div class="label-field-pair">
+    <label for="name">Name<span class="necessary-field">*</span></label>
+    <div class="text-input-bg"><%= f.text_field :name %></div>
+  </div>
+
+  <div class="label-field-pair">
+    <label for="contact_number">Contact number<span class="necessary-field">*</span></label>
+    <div class="text-input-bg"><%= f.text_field :contact_number %></div>
+  </div>
+
+  <div class="label-field-pair">
+    <label for="address">Address<span class="necessary-field">*</span></label>
+    <div class="text-input-bg"><%= f.text_field :address %></div>
+  </div>
+
+  <div class="label-field-pair">
+    <label for="tin_number">TIN number</label>
+    <div class="text-input-bg"><%= f.text_field :tin_number %></div>
+  </div>
+
+  <div class="label-field-pair">
+    <label for="help_desk">Help desk</label>
+    <div class="text-input-bg"><%= f.text_field :help_desk %></div>
+  </div>
+
+  <div>
+    <%= f.submit form_action_text(supplier), :class => 'submit_button' %>
+  </div>
+
+<% end %>

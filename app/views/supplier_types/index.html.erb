@@ -1,0 +1,31 @@
+<table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+  <% if @supplier_types.any? %>
+    <tr class="tr-head">
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+    <tr class="tr-blank"></tr>
+
+    <% @supplier_types.each_with_index do |supplier_type, i| %>
+      <tr class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-2"><%=h supplier_type.name %></td>
+        <td class="col-3">
+          <% if can? :edit, supplier_type %>
+            <%= link_to 'Edit', edit_supplier_type_path(supplier_type) %>
+          <% end %>
+          <% if can? :destroy, supplier_type %>
+            <%= link_to 'Destroy', supplier_type, :confirm => 'Are you sure?', :method => :delete %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr class="tr-<%= cycle('odd', 'even') %>">
+      <td class="col-2">No Supplier types added</td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New supplier_type', new_supplier_type_path if can? :create, SupplierType %>

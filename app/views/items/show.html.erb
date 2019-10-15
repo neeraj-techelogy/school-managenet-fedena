@@ -1,0 +1,35 @@
+<div id="page-yield" class="detail">
+
+  <table width="700" class="list">
+    <tbody>
+      <tr class="odd left">
+        <td class="">Category</td>
+        <td class="right"><%=h @item.item_category.name %></td>
+      </tr>
+
+      <tr class="even left">
+        <td class="">Name</td>
+        <td class="right"><%=h @item.name %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td>Code</td>
+        <td class="right"><%=h @item.code %></td>
+      </tr>
+
+      <tr class="even left">
+        <td class="">Specification</td>
+        <td class="right"><%=h @item.specification %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td>Description</td>
+        <td class="right"><%=h @item.description %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= link_to 'Edit', edit_item_path(@item) if can? :edit, @item %>
+  <%= link_to 'Back', items_path %>
+
+</div>

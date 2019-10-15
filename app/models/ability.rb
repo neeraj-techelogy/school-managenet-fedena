@@ -30,6 +30,8 @@ class Ability
 
         can :read, SupportRequestReply
         can :manage, SupportRequestReply, :user_id => user.id
+
+        can :read, SupplierType
       end
     else
       # Not logged in

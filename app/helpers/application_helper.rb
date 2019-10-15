@@ -127,4 +127,21 @@ module ApplicationHelper
       "Create"
     end
   end
+
+  def action_text(controller, action)
+    controller ||= ''
+    action ||= ''
+    case action
+    when 'index'
+      'Listing ' + controller.humanize.pluralize
+    when 'new', 'create'
+      'New ' + controller.humanize.singularize
+    when 'edit', 'update'
+      'Editing ' + controller.humanize.singularize
+    when 'show'
+      controller.singularize.humanize + ' detail'
+    else
+      controller.humanize + ' ' + action.humanize.capitalize
+    end
+  end
 end

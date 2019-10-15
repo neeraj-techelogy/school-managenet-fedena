@@ -1,0 +1,40 @@
+<div id="page-yield" class="detail">
+
+  <table width="700" class="list">
+    <tbody>
+      <tr class="odd left">
+        <td class="">Supplier type</td>
+        <td class="right"><%=h @supplier.supplier_type.name %></td>
+      </tr>
+
+      <tr class="even left">
+        <td class="">Name</td>
+        <td class="right"><%=h @supplier.name %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td>Contact number</td>
+        <td class="right"><%=h @supplier.contact_number %></td>
+      </tr>
+
+      <tr class="even left">
+        <td>Address</td>
+        <td class="right"><%=h @supplier.address %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td>TIN number</td>
+        <td class="right"><%=h @supplier.tin_number %></td>
+      </tr>
+
+      <tr class="even left">
+        <td>Help desk</td>
+        <td class="right"><%=h @supplier.help_desk %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= link_to 'Edit', edit_supplier_path(@supplier) if can? :edit, @supplier %>
+  <%= link_to 'Back', suppliers_path %>
+
+</div>

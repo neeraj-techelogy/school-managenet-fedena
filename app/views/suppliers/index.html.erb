@@ -1,0 +1,41 @@
+<table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+  <% if @suppliers.any? %>
+    <tr class="tr-head">
+      <th>Supplier type</th>
+      <th>Name</th>
+      <th>Contact number</th>
+      <th>Address</th>
+      <th>TIN number</th>
+      <th>Help desk</th>
+      <th>Actions</th>
+    </tr>
+    <tr class="tr-blank"></tr>
+
+    <% @suppliers.each_with_index do |supplier, i| %>
+      <tr class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-1"><%=h supplier.supplier_type.name %></td>
+        <td class="col-1"><%=h supplier.name %></td>
+        <td class="col-1"><%=h supplier.contact_number %></td>
+        <td class="col-1"><%=h supplier.address %></td>
+        <td class="col-1"><%=h supplier.tin_number %></td>
+        <td class="col-1"><%=h supplier.help_desk %></td>
+        <td class="col-3">
+          <% if can? :edit, supplier %>
+            <%= link_to 'Edit', edit_supplier_path(supplier) %>
+          <% end %>
+          <% if can? :destroy, supplier %>
+            <%= link_to 'Destroy', supplier, :confirm => 'Are you sure?', :method => :delete %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr class="tr-<%= cycle('odd', 'even') %>">
+      <td class="col-2">No Supplier added</td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New supplier', new_supplier_path if can? :create, Supplier %>

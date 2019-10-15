@@ -1,4 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :items
+
+  map.resources :item_categories
+
+  map.resources :stores
+
+  map.resources :suppliers
+
+  map.resources :supplier_types
+
   map.resources :support_requests, :member => { :update_status => :post } do |support_requests|
     support_requests.resources :support_request_replies
   end

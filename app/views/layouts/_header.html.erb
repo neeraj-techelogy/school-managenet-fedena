@@ -1,0 +1,26 @@
+<div id="header_bg">
+  <div id="header">
+    <div id="outer-header-link">
+      <div id="institution-name">
+        <%= current_school_name %>
+      </div>
+      <div id="header_link" >
+        <div id="messages-link">
+          <%= link_to t('messages'), :controller => "reminder", :action => "index" %><%= render :partial =>'layouts/reminder_count'%>
+        </div>
+        <div id="profile-link">
+          <%= link_to @current_user.first_name, { :controller => 'user', :action => 'profile', :id => @current_user.username }, :class=>"profile-link" %>
+        </div>
+        <div id="logout-link">
+          <%= link_to t('log_out'), :controller => 'user', :action => 'logout' %>
+        </div>
+      </div>
+    </div>
+    <div id="outer-main-menu">
+      <%= main_menu %>
+    </div>
+    <div id="outer-autosuggest-menu">
+      <%= render :partial => "layouts/autosuggest_menu" %>
+    </div>
+  </div>
+</div>

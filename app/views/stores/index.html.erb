@@ -1,0 +1,33 @@
+<table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+  <% if @stores.any? %>
+    <tr class="tr-head">
+      <th>Name</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+    <tr class="tr-blank"></tr>
+
+    <% @stores.each_with_index do |store, i| %>
+      <tr class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-2"><%=link_to store.name, store %></td>
+        <td class="col-2"><%=h store.description %></td>
+        <td class="col-3">
+          <% if can? :edit, store %>
+            <%= link_to 'Edit', edit_store_path(store) %>
+          <% end %>
+          <% if can? :destroy, store %>
+            <%= link_to 'Destroy', store, :confirm => 'Are you sure?', :method => :delete %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr class="tr-<%= cycle('odd', 'even') %>">
+      <td class="col-2">No Stores added</td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New store', new_store_path if can? :create, Store %>

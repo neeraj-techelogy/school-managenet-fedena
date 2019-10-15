@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="<%= (rtl?) ? 'rtl' : 'ltr' %>">
+  <%= render 'layouts/head_tag' %>
+
+  <body>
+    <%= render 'layouts/header' %>
+    <div id="content_wrapper" >
+      <%= render 'layouts/side_bar' %>
+
+      <div id="content">
+        <div id="content-header">
+         <%= image_tag("/images/student_details/student_details_logo.jpg") %>
+          <h1><%= action_text(params[:controller], params[:action]) %></h1>
+          <div id="app-back-button">
+            <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+          </div>
+        </div>
+
+        <div id="page-yield" class="list">
+          <%= render 'layouts/flash_message' %>
+          <%= yield %>
+        </div>
+      </div>
+
+      <div class="extender"></div>
+    </div>
+    <%= render 'layouts/footer' %>
+  </body>
+</html>

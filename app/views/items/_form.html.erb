@@ -1,0 +1,34 @@
+<% form_for(item) do |f| %>
+  <div id="necessary-field-notification"> Fields marked with <span class="necessary-field">*</span> must be filled.</div>
+  <%= f.error_messages %>
+
+  <div class="label-field-pair">
+    <label for="category">Category<span class="necessary-field">*</span></label>
+    <div class="text-input-bg"><%= f.collection_select :item_category_id, ItemCategory.all, :id, :name %></div>
+  </div>
+
+  <div class="label-field-pair">
+    <label for="name">Name<span class="necessary-field">*</span></label>
+    <div class="text-input-bg"><%= f.text_field :name %></div>
+  </div>
+
+  <div class="label-field-pair">
+    <label for="code">Code<span class="necessary-field">*</span></label>
+    <div class="text-input-bg"><%= f.text_field :code %></div>
+  </div>
+
+  <div class="label-field-pair">
+    <label for="specification">Specification</label>
+    <div class="text-input-bg"><%= f.text_field :specification %></div>
+  </div>
+
+  <div class="label-field-pair">
+    <label for="description">Description</label>
+    <div class="text-input-bg"><%= f.text_field :description %></div>
+  </div>
+
+  <div>
+    <%= f.submit form_action_text(item), :class => 'submit_button' %>
+  </div>
+
+<% end %>
