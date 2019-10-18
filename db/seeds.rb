@@ -102,5 +102,5 @@ end
 Event.all.each do |e|
   e.destroy if e.origin_type=="AdditionalExam"
 end
-
-Store.create(:name => 'Inventory')
+Store.find_or_create_by_name(:name => 'Inventory')
+Store.create(:name => 'Inventory', :description => 'Inventory store')

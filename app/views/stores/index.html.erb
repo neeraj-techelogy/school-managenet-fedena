@@ -14,10 +14,17 @@
     </div>
   <% end %>
 
-  <% if can? :read, Indent %>
+  <% if can? :read, SupplierType %>
     <div class="link-box">
-      <div class="link-heading"><%= link_to "Indents" , indents_path %>  </div>
-      <div class="link-descr">Manage indents</div>
+      <div class="link-heading"><%= link_to "Supplier types" , supplier_types_path %>  </div>
+      <div class="link-descr">Manage Supplier types</div>
+    </div>
+  <% end %>
+
+  <% if can? :read, Supplier %>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "Suppliers" , suppliers_path %>  </div>
+      <div class="link-descr">Manage Suppliers</div>
     </div>
   <% end %>
 
@@ -25,6 +32,13 @@
     <div class="link-box">
       <div class="link-heading"><%= link_to "Purchase orders" , purchase_orders_path %>  </div>
       <div class="link-descr">Manage purchase orders</div>
+    </div>
+  <% end %>
+
+  <% if can? :read, Indent %>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "Indents" , indents_path %>  </div>
+      <div class="link-descr">Manage indents</div>
     </div>
   <% end %>
 

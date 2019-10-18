@@ -15,5 +15,6 @@
         <%= inventory_order_item_form.text_field :quantity %>
       </div>
     </div>
+    <%= link_to_function"remove","$(this).up('.inventory_order_item').remove()"%>
   <% end -%>
 </div>
