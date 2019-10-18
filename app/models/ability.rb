@@ -34,6 +34,10 @@ class Ability
       end
 
       if user.student? || user.employee?
+        #can :read, Document, :attachable_id => user.id
+        #can :read, Hostel
+        #can :read, Room
+
         can :read, SupportRequest
         can :update_status, SupportRequest, :assignee_id => user.id
         can :accept, SupportRequest, :reporter_id => user.id

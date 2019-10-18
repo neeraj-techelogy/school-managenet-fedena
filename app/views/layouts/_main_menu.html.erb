@@ -212,6 +212,18 @@
       <% if @current_user.admin? %>
         <li><%= link_to "#{t('user_text')}" , :controller => "user", :action=>"index" %></li>
       <% end %>
+      <% if can? :read, Hostel %>
+        <li><%= link_to 'Hostels', manage_hostels_hostels_path %></li>
+      <% end %>
+      <% if can? :read, Document %>
+        <li><%= link_to 'Documents', documents_path %></li>
+      <% end %>
+      <% if can? :read, SupportRequest %>
+        <li><%= link_to 'Support requests', support_requests_path %></li>
+      <% end %>
+      <% if can? :read, Store %>
+        <li><%= link_to 'Inventory', stores_path %></li>
+      <% end %>
     </ul>
   </li>
 </ul>
