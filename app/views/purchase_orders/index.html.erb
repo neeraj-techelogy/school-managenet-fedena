@@ -1,0 +1,39 @@
+<table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+  <% if @purchase_orders.any? %>
+    <tr class="tr-head">
+      <th>User</th>
+      <th>Store</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Created on</th>
+      <th>Actions</th>
+    </tr>
+    <tr class="tr-blank"></tr>
+
+    <% @purchase_orders.each_with_index do |purchase_order, i| %>
+      <tr class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-2"><%=h purchase_order.user.full_name %></td>
+        <td class="col-2"><%=h purchase_order.store.name %></td>
+        <td class="col-2"><%=link_to purchase_order.name, purchase_order %></td>
+        <td class="col-2"><%=h purchase_order.status %></td>
+        <td class="col-2"><%=h purchase_order.created_at.to_date %></td>
+        <td class="col-3">
+          <% if can? :edit, purchase_order %>
+            <%= link_to 'Edit', edit_purchase_order_path(purchase_order) %>
+          <% end %>
+          <% if can? :destroy, purchase_order %>
+            <%= link_to 'Destroy', purchase_order, :confirm => 'Are you sure?', :method => :delete %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr class="tr-<%= cycle('odd', 'even') %>">
+      <td class="col-2">No Purchase orders added</td>
+    </tr>
+  <% end %>
+</table>
+<%= will_paginate @purchase_orders %>
+<br />
+
+<%= link_to 'New Purchase order', new_purchase_order_path if can? :create, PurchaseOrder %>

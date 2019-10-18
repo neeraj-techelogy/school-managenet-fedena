@@ -1292,7 +1292,9 @@ input.radio {
 	font-family: arial;
 	cursor: pointer;
 }
-
+.mt-15 {
+  margin-top: 15px;
+}
 /* Textarea*/
 .label-field-pair-text-area{
     height:110px;

@@ -1,4 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :inventory_order_items
+
+  map.resources :indents, :member => { :update_status => :post }
+  map.resources :invoices
+  map.resources :purchase_orders, :member => { :update_status => :post }
+
   map.resources :items
 
   map.resources :item_categories

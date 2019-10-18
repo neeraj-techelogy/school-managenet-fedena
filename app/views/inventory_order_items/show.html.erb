@@ -1,0 +1,48 @@
+<p>
+  <b>Inventory order:</b>
+  <%=h @inventory_order_item.inventory_order %>
+</p>
+
+<p>
+  <b>Store:</b>
+  <%=h @inventory_order_item.store %>
+</p>
+
+<p>
+  <b>Item:</b>
+  <%=h @inventory_order_item.item %>
+</p>
+
+<p>
+  <b>Quantity:</b>
+  <%=h @inventory_order_item.quantity %>
+</p>
+
+<p>
+  <b>Rate:</b>
+  <%=h @inventory_order_item.rate %>
+</p>
+
+<p>
+  <b>Tax percent:</b>
+  <%=h @inventory_order_item.tax_percent %>
+</p>
+
+<p>
+  <b>Discount percent:</b>
+  <%=h @inventory_order_item.discount_percent %>
+</p>
+
+<p>
+  <b>Discount amount:</b>
+  <%=h @inventory_order_item.discount_amount %>
+</p>
+
+<p>
+  <b>Additional charges:</b>
+  <%=h @inventory_order_item.additional_charges %>
+</p>
+
+
+<%= link_to 'Edit', edit_inventory_order_item_path(@inventory_order_item) %> |
+<%= link_to 'Back', inventory_order_items_path %>

@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  inventory_order: 
+  store: 
+  item: 
+  quantity: 1
+  rate: 9.99
+  tax_percent: 9.99
+  discount_percent: 9.99
+  discount_amount: 9.99
+  additional_charges: 9.99
+
+two:
+  inventory_order: 
+  store: 
+  item: 
+  quantity: 1
+  rate: 9.99
+  tax_percent: 9.99
+  discount_percent: 9.99
+  discount_amount: 9.99
+  additional_charges: 9.99

@@ -27,7 +27,7 @@
     </tr>
   <% end %>
 </table>
-
+<%= will_paginate @item_categories %>
 <br />
 
 <%= link_to 'New Item category', new_item_category_path if can? :create, ItemCategory %>

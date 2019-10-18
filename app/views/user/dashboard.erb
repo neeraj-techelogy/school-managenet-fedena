@@ -257,10 +257,19 @@
 
   <% end %>
 
-  <div class="button-box">
-    <%= link_to "<div class ='button-label'><p>Support requests</p></div>", {:controller => "support_requests", :action => "index"},
-      :class => "option_buttons", :id => "support_requests_button", :title => "Manage support requests and replies"%>
-  </div>
+  <% if can? :read, SupportRequest %>
+    <div class="button-box">
+      <%= link_to "<div class ='button-label'><p>Support requests</p></div>", {:controller => "support_requests", :action => "index"},
+        :class => "option_buttons", :id => "support_requests_button", :title => "Manage support requests and replies"%>
+    </div>
+  <% end %>
+
+  <% if can? :read, Store %>
+    <div class="button-box">
+      <%= link_to "<div class ='button-label'><p>Inventory</p></div>", stores_path,
+        :class => "option_buttons", :id => "inventory_button", :title => "Manage inventory and create indents"%>
+    </div>
+  <% end %>
 
   <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
     <% unless mod[:dashboard_menu].blank? %>

@@ -1,0 +1,48 @@
+<h1>Editing inventory_order_item</h1>
+
+<% form_for(@inventory_order_item) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :inventory_order %><br />
+    <%= f.text_field :inventory_order %>
+  </p>
+  <p>
+    <%= f.label :store %><br />
+    <%= f.text_field :store %>
+  </p>
+  <p>
+    <%= f.label :item %><br />
+    <%= f.text_field :item %>
+  </p>
+  <p>
+    <%= f.label :quantity %><br />
+    <%= f.text_field :quantity %>
+  </p>
+  <p>
+    <%= f.label :rate %><br />
+    <%= f.text_field :rate %>
+  </p>
+  <p>
+    <%= f.label :tax_percent %><br />
+    <%= f.text_field :tax_percent %>
+  </p>
+  <p>
+    <%= f.label :discount_percent %><br />
+    <%= f.text_field :discount_percent %>
+  </p>
+  <p>
+    <%= f.label :discount_amount %><br />
+    <%= f.text_field :discount_amount %>
+  </p>
+  <p>
+    <%= f.label :additional_charges %><br />
+    <%= f.text_field :additional_charges %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @inventory_order_item %> |
+<%= link_to 'Back', inventory_order_items_path %>

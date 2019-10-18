@@ -1,0 +1,21 @@
+<% form_for(indent) do |f| %>
+  <div id="necessary-field-notification"> Fields marked with <span class="necessary-field">*</span> must be filled.</div>
+  <%= f.error_messages %>
+
+  <div class="label-field-pair">
+    <label for="category">Store<span class="necessary-field">*</span></label>
+    <div class="text-input-bg"><%= f.collection_select :store_id,  Store.all, :id, :name %></div>
+  </div>
+
+  <div id="inventory_order_items">
+    <%= render :partial => 'inventory_order_item', :collection => indent.inventory_order_items %>
+  </div>
+
+  <div class="mt-15">
+    <%= add_inventory_order_item_link " Add an Item" %>
+  </div>
+
+  <div>
+    <%= f.submit form_action_text(indent), :class => 'submit_button' %>
+  </div>
+<% end %>

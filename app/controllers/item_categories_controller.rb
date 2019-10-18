@@ -3,7 +3,7 @@ class ItemCategoriesController < ApplicationController
   layout 'scaffold'
 
   def index
-    @item_categories = ItemCategory.all
+    @item_categories = ItemCategory.paginate(:page => params[:page])
   end
 
   def show

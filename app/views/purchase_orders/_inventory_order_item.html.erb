@@ -1,0 +1,56 @@
+<div class="inventory_order_item comment">
+  <% new_or_existing = inventory_order_item.new_record? ? 'new' : 'existing' %>
+  <% prefix ="purchase_order[#{new_or_existing}_inventory_order_item_attributes][]" %>
+  <% fields_for prefix, inventory_order_item do |inventory_order_item_form| -%>
+    <div class="label-field-pair">
+      <label for="item">Item<span class="necessary-field">*</span></label>
+      <div class="text-input-bg">
+        <%= inventory_order_item_form.collection_select :item_id, Item.all, :id, :name %>
+      </div>
+    </div>
+
+    <div class="label-field-pair">
+      <label for="quantity">Quantity<span class="necessary-field">*</span></label>
+      <div class="text-input-bg">
+        <%= inventory_order_item_form.text_field :quantity %>
+      </div>
+    </div>
+
+    <div class="label-field-pair">
+      <label for="rate">Rate</label>
+      <div class="text-input-bg">
+        <%= inventory_order_item_form.text_field :rate %>
+      </div>
+    </div>
+
+    <div class="label-field-pair">
+      <label for="tax_percent">Tax percent</label>
+      <div class="text-input-bg">
+        <%= inventory_order_item_form.text_field :tax_percent %>
+      </div>
+    </div>
+
+    <div class="label-field-pair">
+      <label for="category">Discount percent</label>
+      <div class="text-input-bg">
+        <%= inventory_order_item_form.text_field :discount_percent %>
+      </div>
+    </div>
+
+    <div class="label-field-pair">
+      <label for="category">Discount amount</label>
+      <div class="text-input-bg">
+        <%= inventory_order_item_form.text_field :discount_amount %>
+      </div>
+    </div>
+
+    <div class="label-field-pair">
+      <label for="category">Additional charges</label>
+      <div class="text-input-bg">
+        <%= inventory_order_item_form.text_field :additional_charges %>
+      </div>
+    </div>
+
+    <%= link_to_function"remove","$(this).up('.inventory_order_item').remove()"%>
+  <% end -%>
+</div>

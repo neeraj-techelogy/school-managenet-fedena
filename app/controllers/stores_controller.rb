@@ -4,6 +4,7 @@ class StoresController < ApplicationController
 
   def index
     @stores = Store.all
+    @items = Item.all
   end
 
   def show

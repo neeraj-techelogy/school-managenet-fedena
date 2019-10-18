@@ -1,0 +1,63 @@
+<% form_for(purchase_order) do |f| %>
+  <div id="necessary-field-notification"> Fields marked with <span class="necessary-field">*</span> must be filled.</div>
+  <%= f.error_messages %>
+
+  <div class="label-field-pair">
+    <label for="supplier">Supplier<span class="necessary-field">*</span></label>
+    <div class="text-input-bg"><%= f.collection_select :supplier_id,  Supplier.all, :id, :name %></div>
+  </div>
+
+  <div class="label-field-pair">
+    <label for="date">Date<span class="necessary-field">*</span></label>
+    <div class="text-input-bg">
+      <%= calendar_date_select_tag 'purchase_order[date]',
+        I18n.l(Date.today,:format=>:default),
+        :year_range => 0.years.ago..1.years.from_now, :popup=>"force" %>
+    </div>
+  </div>
+
+  <div class="label-field-pair">
+    <label for="reference">Reference</label>
+    <div class="text-input-bg"><%= f.text_field :reference %></div>
+  </div>
+
+  <div class="label-field-pair">
+    <label for="invoice_number">Invoice number</label>
+    <div class="text-input-bg"><%= f.text_field :invoice_number %></div>
+  </div>
+
+  <div class="label-field-pair">
+    <label for="invoice_date">Invoice date</label>
+    <div class="text-input-bg">
+      <%= calendar_date_select_tag 'purchase_order[invoice_date]',
+        nil,
+        :year_range => 0.years.ago..1.years.from_now, :popup=>"force" %>
+    </div>
+  </div>
+
+  <div class="label-field-pair">
+    <label for="reciept_date">Reciept date</label>
+    <div class="text-input-bg">
+      <%= calendar_date_select_tag 'purchase_order[reciept_date]',
+        nil,
+        :year_range => 0.years.ago..1.years.from_now, :popup=>"force" %>
+    </div>
+  </div>
+
+  <div class="label-field-pair">
+    <label for="other_charges">Other charges</label>
+    <div class="text-input-bg"><%= f.text_field :other_charges %></div>
+  </div>
+
+  <div id="inventory_order_items">
+    <%= render :partial => 'inventory_order_item', :collection => purchase_order.inventory_order_items %>
+  </div>
+
+  <div class="mt-15">
+    <%= add_inventory_order_item_link " Add an Item" %>
+  </div>
+
+  <div>
+    <%= f.submit form_action_text(purchase_order), :class => 'submit_button' %>
+  </div>
+<% end %>

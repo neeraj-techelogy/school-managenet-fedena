@@ -1,0 +1,39 @@
+<table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+  <% if @indents.any? %>
+    <tr class="tr-head">
+      <th>User</th>
+      <th>Store</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Created on</th>
+      <th>Actions</th>
+    </tr>
+    <tr class="tr-blank"></tr>
+
+    <% @indents.each_with_index do |indent, i| %>
+      <tr class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-2"><%=h indent.user.full_name %></td>
+        <td class="col-2"><%=h indent.store.name %></td>
+        <td class="col-2"><%=link_to indent.name, indent %></td>
+        <td class="col-2"><%=h indent.status %></td>
+        <td class="col-2"><%=h indent.created_at.to_date %></td>
+        <td class="col-3">
+          <% if can? :edit, indent %>
+            <%= link_to 'Edit', edit_indent_path(indent) %>
+          <% end %>
+          <% if can? :destroy, indent %>
+            <%= link_to 'Destroy', indent, :confirm => 'Are you sure?', :method => :delete %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr class="tr-<%= cycle('odd', 'even') %>">
+      <td class="col-2">No Indents added</td>
+    </tr>
+  <% end %>
+</table>
+<%= will_paginate @indents %>
+<br />
+
+<%= link_to 'New Indent', new_indent_path if can? :create, Indent %>

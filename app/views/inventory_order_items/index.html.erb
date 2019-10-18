@@ -1,0 +1,36 @@
+<h1>Listing inventory_order_items</h1>
+
+<table>
+  <tr>
+    <th>Inventory order</th>
+    <th>Store</th>
+    <th>Item</th>
+    <th>Quantity</th>
+    <th>Rate</th>
+    <th>Tax percent</th>
+    <th>Discount percent</th>
+    <th>Discount amount</th>
+    <th>Additional charges</th>
+  </tr>
+
+<% @inventory_order_items.each do |inventory_order_item| %>
+  <tr>
+    <td><%=h inventory_order_item.inventory_order %></td>
+    <td><%=h inventory_order_item.store %></td>
+    <td><%=h inventory_order_item.item %></td>
+    <td><%=h inventory_order_item.quantity %></td>
+    <td><%=h inventory_order_item.rate %></td>
+    <td><%=h inventory_order_item.tax_percent %></td>
+    <td><%=h inventory_order_item.discount_percent %></td>
+    <td><%=h inventory_order_item.discount_amount %></td>
+    <td><%=h inventory_order_item.additional_charges %></td>
+    <td><%= link_to 'Show', inventory_order_item %></td>
+    <td><%= link_to 'Edit', edit_inventory_order_item_path(inventory_order_item) %></td>
+    <td><%= link_to 'Destroy', inventory_order_item, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New inventory_order_item', new_inventory_order_item_path %>

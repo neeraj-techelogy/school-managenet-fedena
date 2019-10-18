@@ -1,0 +1,22 @@
+<div class="comment">
+  <table width="600" class="list">
+    <tbody>
+      <tr class="odd">
+        <td>Item name</td>
+        <td><%=h inventory_order_item.item.name %></td>
+      </tr>
+
+      <tr class="even">
+        <td>Quantity</td>
+        <td><%=h inventory_order_item.quantity %></td>
+      </tr>
+
+      <tr class="odd text-<%= (inventory_order_item.is_available?) ? 'success' : 'danger' %>">
+        <td>Available Quantity</td>
+        <td><%=h inventory_order_item.item.available_quantity %></td>
+      </tr>
+
+    </table>
+  </table>
+
+</div>

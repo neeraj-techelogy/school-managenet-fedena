@@ -1,0 +1,79 @@
+<div id="page-yield" class="detail">
+
+  <table width="700" class="list">
+    <tbody>
+      <tr class="odd left">
+        <td class="">User</td>
+        <td class="right"><%=h @purchase_order.user.full_name %></td>
+      </tr>
+
+      <tr class="even left">
+        <td class="">Supplier</td>
+        <td class="right"><%=h @purchase_order.supplier.name %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td class="">Name</td>
+        <td class="right"><%=h @purchase_order.name %></td>
+      </tr>
+
+      <tr class="even left">
+        <td>Date</td>
+        <td class="right"><%=h @purchase_order.date %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td>Reference</td>
+        <td class="right"><%=h @purchase_order.reference %></td>
+      </tr>
+
+      <tr class="even left">
+        <td>Invoice number</td>
+        <td class="right"><%=h @purchase_order.invoice_number %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td>Invoice date</td>
+        <td class="right"><%=h @purchase_order.invoice_date %></td>
+      </tr>
+
+      <tr class="even left">
+        <td>Reciept date</td>
+        <td class="right"><%=h @purchase_order.reciept_date %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td>Other charges</td>
+        <td class="right"><%=h @purchase_order.other_charges %></td>
+      </tr>
+
+      <tr class="even left">
+        <td>Total amount</td>
+        <td class="right"><%=h @purchase_order.total_amount %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td class="">Status</td>
+        <td class="right"><%=h @purchase_order.status %></td>
+      </tr>
+
+      <tr class="even left">
+        <td class="">Created on</td>
+        <td class="right"><%=h @purchase_order.created_at.to_date %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= link_to 'Edit', edit_purchase_order_path(@purchase_order) if can? :edit, @purchase_order %>
+  <%= link_to 'Back', purchase_orders_path %>
+
+  <% if (can? :update_status, @purchase_order) && @purchase_order.status == 'new' %>
+    <div class="detail-action-cont align-right">
+      <%= link_to "Mark recieved", update_status_purchase_order_path(:status => 'recieved'), :method => :post, :class => 'btn-primary' %>
+      <%= link_to "Mark rejected", update_status_purchase_order_path(:status => 'rejected'), :method => :post, :class => 'btn-primary' %>
+    </div>
+  <% end %>
+</div>
+<% @purchase_order.inventory_order_items.each do |inventory_order_item| %>
+  <%= render 'inventory_order_item_detail', :inventory_order_item => inventory_order_item %>
+<% end %>

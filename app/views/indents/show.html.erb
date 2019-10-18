@@ -1,0 +1,44 @@
+<div id="page-yield" class="detail">
+
+  <table width="700" class="list">
+    <tbody>
+      <tr class="odd left">
+        <td class="">User</td>
+        <td class="right"><%=h @indent.user.full_name %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td class="">Store</td>
+        <td class="right"><%=h @indent.store.name %></td>
+      </tr>
+
+      <tr class="even left">
+        <td class="">Name</td>
+        <td class="right"><%=h @indent.name %></td>
+      </tr>
+
+      <tr class="odd left">
+        <td>Status</td>
+        <td class="right"><%=h @indent.status %></td>
+      </tr>
+
+      <tr class="even left">
+        <td class="">Created on</td>
+        <td class="right"><%=h @indent.created_at.to_date %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= link_to 'Edit', edit_indent_path(@indent) if can? :edit, @indent %>
+  <%= link_to 'Back', indents_path %>
+
+  <% if (can? :update_status, @indent) && @indent.status == 'new' %>
+    <div class="detail-action-cont align-right">
+      <% if @indent.all_items_available? %>
+        <%= link_to "Mark recieved", update_status_indent_path(:status => 'recieved'), :method => :post, :class => 'btn-primary' %>
+      <% end %>
+      <%= link_to "Mark rejected", update_status_indent_path(:status => 'rejected'), :method => :post, :class => 'btn-primary' %>
+    </div>
+  <% end %>
+</div>
+<%= render @indent.inventory_order_items %>
