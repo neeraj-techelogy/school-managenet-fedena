@@ -17,7 +17,7 @@ GEM
     declarative_authorization (0.5.7)
     fastthread (1.0.7)
     gem_plugin (0.2.3)
-    i18n (0.4.2)
+    i18n (0.6.11)
     minitest (5.11.3)
     mongrel (1.1.5)
       cgi_multipart_eof_fix (>= 2.4)
@@ -45,7 +45,7 @@ PLATFORMS
 DEPENDENCIES
   cancan
   declarative_authorization (~> 0.5.1)
-  i18n (= 0.4.2)
+  i18n (= 0.6.11)
   minitest
   mongrel
   mysql

@@ -6,7 +6,7 @@ gem 'rails', '= 2.3.5'
 #gem 'rack', '~> 1.3.5'
 gem 'declarative_authorization', '~> 0.5.1'
 #gem 'searchlogic'
-gem 'i18n', '= 0.4.2'
+gem 'i18n', '0.6.11'
 #gem 'rspec', '= 1.3.0'
 
 # Bundle edge Rails instead:
