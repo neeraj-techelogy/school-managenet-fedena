@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 ruby '1.8.7'
 
 gem 'rake', '= 0.8.7'
-gem 'rails', '= 2.3.5'
+gem 'rails', '3.0.5'
 #gem 'rack', '~> 1.3.5'
 gem 'declarative_authorization', '~> 0.5.1'
 #gem 'searchlogic'
